@@ -27,7 +27,7 @@ module SLA
       end
     end
 
-    def check_url(url, depth, &block)
+    def check_url(url, depth, &_block)
       page = Page.new url, depth: depth, base_url: base_url
       page.validate
 
