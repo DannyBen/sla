@@ -27,3 +27,8 @@ action :server, :s do |args|
     run_bg 'adsf -p3000 -rmock -a0.0.0.0', pid: :mock
   end
 end
+
+help  "run against the localhost mock"
+action :mock do
+  run! "bundle exec bin/sla check localhost:3000 -c1"
+end

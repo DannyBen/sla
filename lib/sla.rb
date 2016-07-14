@@ -15,6 +15,5 @@ require 'sla/cache'
 require 'sla/url_manager'
 
 # Remove before deploy
-require 'byebug'
-require 'awesome_print'
-require 'pp'
+# require 'byebug'
+# require 'pp'
