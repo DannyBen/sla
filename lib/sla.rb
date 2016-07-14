@@ -1,0 +1,20 @@
+require 'webcache'
+require 'nokogiri'
+require 'colsole'
+require 'singleton'
+require 'docopt'
+require 'uri'
+
+require 'sla/version'
+require 'sla/base'
+require 'sla/page'
+require 'sla/link'
+require 'sla/checker'
+require 'sla/command_line'
+require 'sla/cache'
+require 'sla/url_manager'
+
+# Remove before deploy
+require 'byebug'
+require 'awesome_print'
+require 'pp'

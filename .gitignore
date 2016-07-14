@@ -1,0 +1,16 @@
+Gemfile.lock
+
+/dev
+/gems
+/coverage
+/doc
+/cache
+
+.bundle
+.byebug_history
+.yardoc
+
+*.sublime-*
+
+/mock.pid
+/log.log
