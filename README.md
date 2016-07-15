@@ -47,6 +47,12 @@ Options:
   --cache, -c LIFE
     Set cache life in seconds [default: 86400]
 
+  --cache-dir DIR
+    Set the cache directory [default: cache]
+
+  --color
+    Disable colors in output
+
 Examples:
   sla check example.com
   sla check example.com -c360 -d10
