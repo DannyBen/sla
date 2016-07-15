@@ -11,7 +11,7 @@ describe CommandLine do
     end
 
     context "with check command" do
-      let(:command) { %w[check http://localhost:3000/ --color] }
+      let(:command) { %w[check http://localhost:3000/ --no-color] }
 
       it "outputs report" do
         expected = fixture :check1

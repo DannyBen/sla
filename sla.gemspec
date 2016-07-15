@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name        = 'sla'
   s.version     = SLA::VERSION
   s.date        = Date.today.to_s
-  s.summary     = "Site Link Analyzer"
+  s.summary     = "Command Line Site Link Analyzer"
   s.description = "Check for broken links on a website"
   s.authors     = ["Danny Ben Shitrit"]
   s.email       = 'db@dannyben.com'

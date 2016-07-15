@@ -25,6 +25,30 @@ Or with bundler:
 gem 'sla'
 ```
 
+
+Features
+--------------------------------------------------
+
+- Easy to use command line interface
+- Built in caching, to avoid over stressing the server
+- Outputs the site tree to screen and log file
+
+
+Example Output
+--------------------------------------------------
+```
+$ sla check localhost:3000
+1 200 - http://localhost:3000
+2 200 -- /whiskey
+3 200 --- /whiskey/tango
+4 404 ---- /whiskey/tango/foxtrot
+5 200 -- /ten
+6 200 --- /ten/four
+7 200 -- /roger
+Done with 1 failures
+```
+
+
 Usage
 --------------------------------------------------
 

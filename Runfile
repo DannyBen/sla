@@ -37,8 +37,10 @@ action :flush do
   say 'Flushed cache/*'
 end
 
-help  "run against the localhost mock"
-action :mock do
-  run! "bundle exec bin/sla check localhost:3000 -c1"
+usage  "mock [-- OPTIONS...]"
+help   "run against the localhost mock"
+action :mock do |args|
+  options = args['OPTIONS'].join ' '
+  run! "bundle exec bin/sla check localhost:3000 -c1 #{options}"
 end
 
