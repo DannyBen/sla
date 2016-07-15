@@ -16,14 +16,13 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   s.required_ruby_version = ">= 2.0.0"
 
-  s.add_dependency 'runfile', '~> 0.8'
   s.add_dependency 'colsole', '~> 0.4'
   s.add_dependency 'docopt', '~> 0.5'
   s.add_dependency 'webcache', '~> 0.2'
   s.add_dependency 'nokogiri', '~> 1.6'
 
   s.add_development_dependency 'runfile', '~> 0.8'
-  s.add_development_dependency 'adsf', '~> 1.2'
+  s.add_development_dependency 'adsf', '~> 1.2' unless ENV['ON_TRAVIS']
   s.add_development_dependency 'runfile-tasks', '~> 0.4'
   s.add_development_dependency 'byebug', '~> 9.0'
   s.add_development_dependency 'rspec', '~> 3.4'
