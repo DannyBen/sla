@@ -46,12 +46,4 @@ describe Page do
     end
   end
 
-  describe '#protocol' do
-    let(:page) { Page.new 'http://localhost:3000/' }
-
-    it "returns the protocol of the page" do
-      expect(page.protocol).to eq 'http'
-    end
-  end
-
 end

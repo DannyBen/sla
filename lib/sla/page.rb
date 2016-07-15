@@ -32,15 +32,6 @@ module SLA
       end
     end
 
-    def protocol
-      @protocol ||= protocol!
-    end
-
-    def protocol!
-      uri = URI.parse url
-      uri.scheme
-    end
-
     def content
       @content ||= content!
     end
@@ -61,12 +52,11 @@ module SLA
     end
 
     def links!
-      links = doc.css('a')
+      anchors = doc.css('a')
       result = []
-      links.each do |link|
-        href = url_manager.absolute link['href'], base_uri
-        next unless href
-        result.push Link.new link.text, href
+      anchors.each do |a|
+        link = Link.new a['href'], text: a.text, parent: base_uri
+        result.push link if link.interesting?
       end
       result
     end
