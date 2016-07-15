@@ -12,7 +12,6 @@ require 'sla/link'
 require 'sla/checker'
 require 'sla/command_line'
 require 'sla/cache'
-require 'sla/url_manager'
 
 # Remove before deploy
 # require 'byebug'

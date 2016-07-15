@@ -14,8 +14,8 @@ module SLA
       checked_links.count
     end
 
-    def on_check(urls=nil, depth=1, &block)
-      urls ||= [base_url]
+    def on_check(urls, depth=1, &block)
+      urls = [urls] if urls.is_a? String
 
       self.next_check = []
 
@@ -28,7 +28,7 @@ module SLA
     end
 
     def check_url(url, depth, &_block)
-      page = Page.new url, depth: depth, base_url: base_url
+      page = Page.new url, depth: depth
       page.validate
       checked_links.push url
 

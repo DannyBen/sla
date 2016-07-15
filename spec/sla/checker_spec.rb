@@ -2,10 +2,11 @@ require 'spec_helper'
 
 describe Checker do
   let(:checker) { Checker.new }
+  let(:base) { 'http://localhost:3000/' }
 
   describe '#on_check' do
     it "yields page objects as results" do
-      checker.on_check do |result| 
+      checker.on_check base do |result| 
         expect(result).to be_a Page
       end
     end
@@ -31,7 +32,7 @@ describe Checker do
 
   describe '#count' do
     it "returns the number of checked links" do
-      checker.on_check
+      checker.on_check base
       expect(checker.count).to eq 7
     end
   end
