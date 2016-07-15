@@ -14,9 +14,8 @@ Gem::Specification.new do |s|
   s.executables = ["sla"]
   s.homepage    = 'https://github.com/DannyBen/sla'
   s.license     = 'MIT'
-  s.required_ruby_version = ">= 2.0.0"
+  s.required_ruby_version = ">= 2.2.2"
 
-  s.add_dependency 'runfile', '~> 0.8'
   s.add_dependency 'colsole', '~> 0.4'
   s.add_dependency 'docopt', '~> 0.5'
   s.add_dependency 'webcache', '~> 0.2'
@@ -26,8 +25,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'adsf', '~> 1.2'
   s.add_development_dependency 'runfile-tasks', '~> 0.4'
   s.add_development_dependency 'byebug', '~> 9.0'
-  # s.add_development_dependency 'awesome_print', '~> 1.7'
-  # s.add_development_dependency 'rspec', '~> 3.4'
-  # s.add_development_dependency 'simplecov', '~> 0.11'
-  # s.add_development_dependency 'filewatcher', '~> 0.5'
+  s.add_development_dependency 'rspec', '~> 3.4'
+  s.add_development_dependency 'simplecov', '~> 0.11'
 end
