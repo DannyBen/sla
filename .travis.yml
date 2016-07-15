@@ -3,7 +3,7 @@ language: ruby
 cache: bundler
 
 rvm:
-  - 2.0.0
+  - 2.2.2
   - 2.3.1
 
 # We do not install adsf when on travis - it fails with ruby 2.0.0
