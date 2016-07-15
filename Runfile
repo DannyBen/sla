@@ -1,17 +1,18 @@
 require "runfile-tasks"
+require "fileutils"
 
 name    "SLA"
 summary "Runfile tasks for building the SLA gem"
 version SLA::VERSION
 
 RunfileTasks::RubyGems.all 'sla'
-# RunfileTasks::Testing.rspec
-# RunfileTasks::Docs.rdoc
+RunfileTasks::Testing.rspec
+RunfileTasks::Docs.rdoc
 
-# help   "Run YARD server"
-# action :yard do
-#   run "yard server -p3000 -B0.0.0.0 -r"
-# end
+help   "Run YARD server"
+action :yard do
+  run "yard server -p3000 -B0.0.0.0 -r"
+end
 
 help   "Run IRB console"
 action :console, :c do
@@ -28,7 +29,14 @@ action :server, :s do |args|
   end
 end
 
+help   "flush the spec cache"
+action :flush do
+  FileUtils.rm_f Dir["spec/cache/*"]
+  say 'Flushed spec/cache/*'
+end
+
 help  "run against the localhost mock"
 action :mock do
   run! "bundle exec bin/sla check localhost:3000 -c1"
 end
+

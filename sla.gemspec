@@ -26,8 +26,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'adsf', '~> 1.2'
   s.add_development_dependency 'runfile-tasks', '~> 0.4'
   s.add_development_dependency 'byebug', '~> 9.0'
-  # s.add_development_dependency 'awesome_print', '~> 1.7'
-  # s.add_development_dependency 'rspec', '~> 3.4'
-  # s.add_development_dependency 'simplecov', '~> 0.11'
-  # s.add_development_dependency 'filewatcher', '~> 0.5'
+  s.add_development_dependency 'rspec', '~> 3.4'
+  s.add_development_dependency 'simplecov', '~> 0.11'
 end

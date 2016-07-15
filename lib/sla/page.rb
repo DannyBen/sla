@@ -11,7 +11,7 @@ module SLA
     end
 
     def valid?
-      content
+      validate
       status == '200'
     end
 

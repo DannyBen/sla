@@ -5,6 +5,8 @@ module SLA
     def cache
       @cache ||= cache!
     end
+
+    private
     
     def cache! 
       result = WebCache.new
