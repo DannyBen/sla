@@ -31,6 +31,6 @@ Pre-Deployment Steps
 $ run flush          # clear the spec cache
 $ run server         # start the server if not already running
 $ run spec           # test against server, and create cache
-$ run server --stop  # stop the server
+$ run server stop    # stop the server
 $ run spec           # run against cache, ensure its working
 ```

@@ -19,10 +19,10 @@ action :console, :c do
   run "bundle exec bin/console"
 end
 
-usage  "(server|s) [--stop]"
+usage  "(server|s) [stop]"
 help   "Start or stop the mock server"
 action :server, :s do |args|
-  if args['--stop']
+  if args['stop']
     stop_bg :mock
   else
     run_bg 'adsf -p3000 -rmock -a0.0.0.0', pid: :mock
@@ -33,6 +33,8 @@ help   "flush the spec cache"
 action :flush do
   FileUtils.rm_f Dir["spec/cache/*"]
   say 'Flushed spec/cache/*'
+  FileUtils.rm_f Dir["cache/*"]
+  say 'Flushed cache/*'
 end
 
 help  "run against the localhost mock"
