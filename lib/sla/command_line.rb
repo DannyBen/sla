@@ -17,7 +17,8 @@ module SLA
 
     def handle(args)
       if args['check']
-        @no_color = args['--color']
+        @no_color = args['--no-color']
+        @no_log = args['--no-log']
         check_domain args
       end
     end
@@ -27,32 +28,34 @@ module SLA
       checker.max_depth    = args['--depth'].to_i
       checker.cache.life   = args['--cache'].to_i
       checker.cache.dir    = args['--cache-dir'] if args['--cache-dir']
+      logfile              = args['--log']
       url_manager.base_url = args['DOMAIN']
 
-      File.unlink 'log.log' if File.exist? 'log.log'
+      File.unlink logfile if File.exist? logfile
 
       count = 1
       failed = 0
 
-      open('log.log', 'a') do |f|
-        checker.on_check do |page|
-          indent = '-' * page.depth
+      log = []
 
-          status = page.status
-          colored_status = color_status status
-          failed +=1 if status != '200'
+      checker.on_check do |page|
+        indent = '-' * page.depth
 
-          say    "#{count} #{colored_status} #{indent} #{page.name}"
-          f.puts "#{count} #{status} #{indent} #{page.name}"
-          count += 1
-        end
+        status = page.status
+        colored_status = color_status status
+        failed +=1 if status != '200'
 
-        color = failed > 0 ? '!txtred!' : '!txtgrn!'
-        color = "" if @no_color
-        say "#{color}Done with #{failed} failures"
-        f.puts "Done with #{failed} failures"
+        say "#{count} #{colored_status} #{indent} #{page.name}"
+        log.push "#{count} #{status} #{indent} #{page.name}" unless @no_log
+        count += 1
       end
 
+      color = failed > 0 ? '!txtred!' : '!txtgrn!'
+      color = "" if @no_color
+      say "#{color}Done with #{failed} failures"
+      log.push "Done with #{failed} failures" unless @no_log
+
+      File.write logfile, log.join("\n") unless @no_log
     end
 
     def color_status(status)

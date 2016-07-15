@@ -13,4 +13,4 @@ Gemfile.lock
 *.sublime-*
 
 /mock.pid
-/log.log
+/*.log
