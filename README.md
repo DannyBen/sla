@@ -72,12 +72,20 @@ Options:
     Set cache life in seconds [default: 86400]
 
   --cache-dir DIR
-    Set the cache directory [default: cache]
+    Set the cache directory
 
-  --color
+  --no-color
     Disable colors in output
+
+  --no-log
+    Disable logging
+
+  --log LOGFILE
+    Set the name of the logfile [default: sla.log]
 
 Examples:
   sla check example.com
   sla check example.com -c360 -d10
+  sla check example.com --cache-dir my_cache --no-log
+  sla check example.com --depth 10 --log my_log.log
 ```
