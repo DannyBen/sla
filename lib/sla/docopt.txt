@@ -16,7 +16,7 @@ Options:
     Set cache life in seconds [default: 86400]
 
   --cache-dir DIR
-    Set the cache directory [default: cache]
+    Set the cache directory
 
   --color
     Disable colors in output

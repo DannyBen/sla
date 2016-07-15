@@ -33,6 +33,8 @@ help   "flush the spec cache"
 action :flush do
   FileUtils.rm_f Dir["spec/cache/*"]
   say 'Flushed spec/cache/*'
+  FileUtils.rm_f Dir["cache/*"]
+  say 'Flushed cache/*'
 end
 
 help  "run against the localhost mock"
