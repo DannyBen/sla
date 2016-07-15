@@ -57,6 +57,7 @@ module SLA
 
     def color_status(status)
       return status if @no_color
+      # :nocov:
       case status
       when '200'
         '!txtgrn!200!txtrst!'
@@ -65,6 +66,7 @@ module SLA
       else
         status
       end
+      # :nocov:
     end
 
   end

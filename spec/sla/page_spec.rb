@@ -28,4 +28,30 @@ describe Page do
     end
   end
 
+  describe '#valid?' do
+    context "for a valid page" do
+      let(:page) { Page.new 'http://localhost:3000/' }
+
+      it "returns true" do
+        expect(page.valid?).to be true
+      end
+    end
+
+    context "for an invalid page" do
+      let(:page) { Page.new 'http://localhost:3000/not-found' }
+
+      it "returns false" do
+        expect(page.valid?).to be false
+      end
+    end
+  end
+
+  describe '#protocol' do
+    let(:page) { Page.new 'http://localhost:3000/' }
+
+    it "returns the protocol of the page" do
+      expect(page.protocol).to eq 'http'
+    end
+  end
+
 end

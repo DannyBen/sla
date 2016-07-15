@@ -29,4 +29,11 @@ describe Checker do
     end
   end
 
+  describe '#count' do
+    it "returns the number of checked links" do
+      checker.on_check
+      expect(checker.count).to eq 7
+    end
+  end
+
 end
