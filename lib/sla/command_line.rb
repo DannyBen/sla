@@ -13,11 +13,15 @@ module SLA
       end
     end
 
+    private
+
     def handle(args)
       if args['check']
         @domain     = args['DOMAIN']
         @max_depth  = args['--depth'].to_i
         @cache_life = args['--cache'].to_i
+        @cache_dir  = args['--cache-dir']
+        @no_color   = args['--color']
         check_domain
       end
     end
@@ -26,6 +30,7 @@ module SLA
       checker = Checker.new
       checker.max_depth    = @max_depth
       checker.cache.life   = @cache_life
+      checker.cache.dir    = @cache_dir
       url_manager.base_url = @domain
 
       File.unlink 'log.log' if File.exist? 'log.log'
@@ -47,6 +52,7 @@ module SLA
         end
 
         color = failed > 0 ? '!txtred!' : '!txtgrn!'
+        color = "" if @no_color
         say "#{color}Done with #{failed} failures"
         f.puts "Done with #{failed} failures"
       end
@@ -54,6 +60,7 @@ module SLA
     end
 
     def color_status(status)
+      return status if @no_color
       case status
       when '200'
         '!txtgrn!200!txtrst!'
