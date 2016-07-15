@@ -2,7 +2,7 @@ module SLA
   class Checker < Base
     include Colsole
 
-    attr_accessor :checked_links, :results, :max_depth, :next_check
+    attr_accessor :checked_links, :max_depth, :next_check
 
     def initialize
       @max_depth = 10
@@ -21,7 +21,7 @@ module SLA
 
       urls.each do |url|
         check_url url, depth, &block
-        if depth < max_depth
+        if depth < max_depth && !next_check.empty?
           on_check next_check, depth+1, &block
         end
       end
