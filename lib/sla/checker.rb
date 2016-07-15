@@ -1,5 +1,5 @@
 module SLA
-  class Checker < Base
+  class Checker
     include Colsole
 
     attr_accessor :checked_links, :max_depth, :next_check

@@ -2,6 +2,14 @@ module SLA
   class Cache
     include Singleton
 
+    def self.get(url)
+      instance.cache.get url
+    end
+
+    def self.settings
+      instance.cache
+    end
+
     def cache
       @cache ||= cache!
     end

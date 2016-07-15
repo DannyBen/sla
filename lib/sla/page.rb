@@ -1,5 +1,5 @@
 module SLA
-  class Page < Base
+  class Page
     attr_accessor :depth, :status, :base_uri
     attr_reader :url
 
@@ -37,7 +37,7 @@ module SLA
     end
 
     def content!
-      response = cache.get url
+      response = Cache.get url
       self.status = response.error ? '404' : '200'
       self.base_uri = response.base_uri
       response.content

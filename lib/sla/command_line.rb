@@ -1,5 +1,5 @@
 module SLA
-  class CommandLine < Base
+  class CommandLine
     include Singleton
     include Colsole
 
@@ -26,8 +26,8 @@ module SLA
     def check_domain(args)
       checker = Checker.new
       checker.max_depth    = args['--depth'].to_i
-      checker.cache.life   = args['--cache'].to_i
-      checker.cache.dir    = args['--cache-dir'] if args['--cache-dir']
+      Cache.settings.life  = args['--cache'].to_i
+      Cache.settings.dir   = args['--cache-dir'] if args['--cache-dir']
       logfile              = args['--log']
       start_url            = args['DOMAIN']
 
