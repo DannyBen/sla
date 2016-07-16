@@ -19,12 +19,12 @@ module SLA
       link.validate
       yield link if block_given?
 
-      return unless link.valid?
-      return if depth >= max_depth
       return if checked_links.include? link.url
-
       checked_links.push link.url
 
+      return unless link.valid?
+      return if depth >= max_depth
+      
       link.sublinks.each do |sublink|
         check sublink, depth+1, &block
       end

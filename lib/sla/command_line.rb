@@ -40,15 +40,15 @@ module SLA
 
       log = []
 
-      checker.on_check start_url do |page|
-        indent = '-' * page.depth
+      checker.check start_url do |link|
+        indent = '-' * link.depth
 
-        status = page.status
+        status = link.status
         colored_status = color_status status
         failed +=1 if status != '200'
 
-        say "#{count} #{colored_status} #{indent} #{page.name}"
-        log.push "#{count} #{status} #{indent} #{page.name}" unless @no_log
+        say "#{count} #{colored_status} #{indent} #{link.ident}"
+        log.push "#{count} #{status} #{indent} #{link.ident}" unless @no_log
         count += 1
       end
 

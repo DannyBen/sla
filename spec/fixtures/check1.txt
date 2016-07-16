@@ -1,4 +1,4 @@
-1 200 - http://localhost:3000/
+1 200 - /
 2 200 -- /whiskey
 3 200 --- /about
 4 200 ---- /about/contact

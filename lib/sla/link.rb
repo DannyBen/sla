@@ -31,7 +31,7 @@ module SLA
       response.content
     end
 
-    def identity
+    def ident
       full_uri.request_uri
     end
 
