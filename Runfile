@@ -58,3 +58,10 @@ help   "show cache hash for a URL"
 action :hash do |args|
   say Digest::MD5.hexdigest args['URL']
 end
+
+help   "run the dev/test.rb script"
+action :dev do
+  Dir.chdir 'dev' do
+    run "bundle exec ruby test.rb"
+  end
+end

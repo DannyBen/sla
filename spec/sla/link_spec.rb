@@ -10,6 +10,14 @@ describe Link do
     end
   end
 
+  describe '#url' do
+    let(:link) { Link.new 'page', parent: 'http://example.com/' }
+
+    it "returns a full url string" do
+      expect(link.url).to eq 'http://example.com/page'
+    end
+  end
+
   describe '#path' do
     let(:link) { Link.new 'http://example.com/hello?world' }
 
