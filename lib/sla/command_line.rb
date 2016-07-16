@@ -25,11 +25,12 @@ module SLA
 
     def check_domain(args)
       checker = Checker.new
-      checker.max_depth    = args['--depth'].to_i
-      Cache.settings.life  = args['--cache'].to_i
-      Cache.settings.dir   = args['--cache-dir'] if args['--cache-dir']
-      logfile              = args['--log']
-      start_url            = args['DOMAIN']
+      checker.max_depth      = args['--depth'].to_i
+      checker.check_external = args['--external']
+      Cache.settings.life    = args['--cache'].to_i
+      Cache.settings.dir     = args['--cache-dir'] if args['--cache-dir']
+      logfile                = args['--log']
+      start_url              = args['DOMAIN']
 
       start_url = "http://#{start_url}" unless start_url[0..3] == 'http'
 
