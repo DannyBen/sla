@@ -31,7 +31,7 @@ module SLA
     end
 
     def ident
-      full_uri.request_uri
+      external? ? full_uri.to_s : full_uri.request_uri
     end
 
     def url
@@ -51,7 +51,7 @@ module SLA
       result = []
       anchors.each do |a|
         link = Link.new a['href'], text: a.text, parent: real_uri, depth: depth+1
-        result.push link if link.interesting?
+        result.push link if link.relevant?
       end
       result
     end
@@ -77,8 +77,8 @@ module SLA
       parent.host != full_uri.host
     end
 
-    def interesting?
-      !external? && full_uri.scheme =~ /^http/
+    def relevant?
+      full_uri.scheme =~ /^http/
     end
   end
 end
