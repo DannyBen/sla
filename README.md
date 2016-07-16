@@ -74,6 +74,9 @@ Options:
   --cache-dir DIR
     Set the cache directory
 
+  --external
+    Also check external links
+
   --no-color
     Disable colors in output
 
