@@ -1,5 +1,5 @@
 module SLA
-  class CommandLine < Base
+  class CommandLine
     include Singleton
     include Colsole
 
@@ -26,10 +26,12 @@ module SLA
     def check_domain(args)
       checker = Checker.new
       checker.max_depth    = args['--depth'].to_i
-      checker.cache.life   = args['--cache'].to_i
-      checker.cache.dir    = args['--cache-dir'] if args['--cache-dir']
+      Cache.settings.life  = args['--cache'].to_i
+      Cache.settings.dir   = args['--cache-dir'] if args['--cache-dir']
       logfile              = args['--log']
-      url_manager.base_url = args['DOMAIN']
+      start_url            = args['DOMAIN']
+
+      start_url = "http://#{start_url}" unless start_url[0..3] == 'http'
 
       File.unlink logfile if File.exist? logfile
 
@@ -38,7 +40,7 @@ module SLA
 
       log = []
 
-      checker.on_check do |page|
+      checker.on_check start_url do |page|
         indent = '-' * page.depth
 
         status = page.status

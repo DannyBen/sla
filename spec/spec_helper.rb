@@ -20,8 +20,5 @@ RSpec.configure do |config|
     cache = Cache.instance.cache
     cache.dir = 'spec/cache'
     cache.life = File.exist?('mock.pid') ? 1 : 86400 * 365 # days
-
-    # The default URL we are testing everything against
-    UrlManager.instance.base_url = 'http://localhost:3000/'
   end
 end

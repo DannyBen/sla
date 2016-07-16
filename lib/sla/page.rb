@@ -1,5 +1,5 @@
 module SLA
-  class Page < Base
+  class Page
     attr_accessor :depth, :status, :base_uri
     attr_reader :url
 
@@ -32,21 +32,12 @@ module SLA
       end
     end
 
-    def protocol
-      @protocol ||= protocol!
-    end
-
-    def protocol!
-      uri = URI.parse url
-      uri.scheme
-    end
-
     def content
       @content ||= content!
     end
 
     def content!
-      response = cache.get url
+      response = Cache.get url
       self.status = response.error ? '404' : '200'
       self.base_uri = response.base_uri
       response.content
@@ -61,12 +52,11 @@ module SLA
     end
 
     def links!
-      links = doc.css('a')
+      anchors = doc.css('a')
       result = []
-      links.each do |link|
-        href = url_manager.absolute link['href'], base_uri
-        next unless href
-        result.push Link.new link.text, href
+      anchors.each do |a|
+        link = Link.new a['href'], text: a.text, parent: base_uri
+        result.push link if link.interesting?
       end
       result
     end
