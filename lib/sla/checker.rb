@@ -30,14 +30,15 @@ module SLA
     def check_url(url, depth, &_block)
       page = Page.new url, depth: depth
       page.validate
-      checked_links.push url
 
       yield page if block_given? 
       return if depth >= max_depth
+      return if checked_links.include? url
+
+      checked_links.push url
 
       page.links.each do |link|
-        next if checked_links.include? link.url
-        next_check.push link.url
+        next_check.push link.url unless next_check.include? link.url
       end
     end
   end

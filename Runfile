@@ -37,6 +37,12 @@ action :flush do
   say 'Flushed cache/*'
 end
 
+usage  "sla -- COMMANDS..."
+help   "run sla from source"
+action :sla do |args|
+  run! "bundle exec bin/sla #{args['COMMANDS'].join ' '}"
+end
+
 usage  "mock [-- OPTIONS...]"
 help   "run against the localhost mock"
 action :mock do |args|
@@ -47,3 +53,8 @@ action :mock do |args|
   run! "bundle exec bin/sla check localhost:3000 -c1#{options}"
 end
 
+usage  "hash URL"
+help   "show cache hash for a URL"
+action :hash do |args|
+  say Digest::MD5.hexdigest args['URL']
+end
