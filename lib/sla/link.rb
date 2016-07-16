@@ -1,14 +1,13 @@
 module SLA
   class Link
-    attr_accessor :text, :href, :status, :base_uri, :depth
+    attr_accessor :text, :href, :status, :depth, :real_uri
     attr_reader :parent
 
     def initialize(href, opts={})
-      @href       = href
-      @base_uri   = href
-      @text       = opts[:text]
-      @depth      = opts[:depth] || 1
-      self.parent = opts[:parent] || @href
+      @href         = href
+      @text         = opts[:text]
+      @depth        = opts[:depth] || 1
+      self.parent   = opts[:parent] || @href
     end
 
     def valid?
@@ -27,7 +26,7 @@ module SLA
     def content!
       response = Cache.get url
       self.status = response.error ? '404' : '200'
-      self.base_uri = response.base_uri
+      self.real_uri = response.base_uri
       response.content
     end
 
@@ -51,7 +50,7 @@ module SLA
       anchors = doc.css('a')
       result = []
       anchors.each do |a|
-        link = Link.new a['href'], text: a.text, parent: base_uri, depth: depth+1
+        link = Link.new a['href'], text: a.text, parent: real_uri, depth: depth+1
         result.push link if link.interesting?
       end
       result
@@ -60,7 +59,6 @@ module SLA
     def uri
       @uri ||= URI.parse href
     end
-
 
     def parent=(url)
       @parent = url.is_a?(String) ? URI.parse(url) : url
@@ -73,10 +71,6 @@ module SLA
     def full_uri
       return uri if uri.absolute? || !parent.absolute?
       URI.join parent, href
-    end
-
-    def url
-      full_uri.to_s
     end
 
     def external?
