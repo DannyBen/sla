@@ -27,7 +27,7 @@ module SLA
       checker = Checker.new
       checker.max_depth      = args['--depth'].to_i
       checker.check_external = args['--external']
-      Cache.settings.life    = args['--cache'].to_i
+      Cache.settings.life    = Cache.life_to_seconds args['--cache']
       Cache.settings.dir     = args['--cache-dir'] if args['--cache-dir']
       logfile                = args['--log']
       start_url              = args['DOMAIN']

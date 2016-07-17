@@ -10,6 +10,21 @@ module SLA
       instance.cache
     end
 
+    def self.life_to_seconds(arg)
+      case arg[-1]
+      when 's'
+        arg[0..-1].to_i
+      when 'm'
+        arg[0..-1].to_i * 60
+      when 'h'
+        arg[0..-1].to_i * 60 * 60
+      when 'd'
+        arg[0..-1].to_i * 60 * 60 * 24
+      else
+        arg.to_i
+      end
+    end
+
     def cache
       @cache ||= cache!
     end

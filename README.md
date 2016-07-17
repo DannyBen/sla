@@ -63,13 +63,19 @@ Usage:
 Commands:
   check
     Start checking for broken links on a given domain
-
+  
 Options:
   --depth, -d DEPTH
     Set crawling depth [default: 5]
 
   --cache, -c LIFE
-    Set cache life in seconds [default: 86400]
+    Set cache life [default: 1d]. LIFE can be in any of the 
+    following formats:
+      10  = 10 seconds
+      20s = 20 seconds
+      10m = 10 minutes
+      10h = 10 hours
+      10d = 10 days
 
   --cache-dir DIR
     Set the cache directory
@@ -88,7 +94,8 @@ Options:
 
 Examples:
   sla check example.com
-  sla check example.com -c360 -d10
+  sla check example.com -c10m -d10
   sla check example.com --cache-dir my_cache --no-log
   sla check example.com --depth 10 --log my_log.log
+  sla check example.com --cache 30d
 ```
