@@ -7,10 +7,6 @@ Bundler.require :default, :development
 
 include SLA
 
-def fixture(file, ext='txt')
-  File.read "spec/fixtures/#{file}.#{ext}"
-end
-
 RSpec.configure do |config|
   config.before :suite do
     # Prepare the cache object with an appropriate cache dir and

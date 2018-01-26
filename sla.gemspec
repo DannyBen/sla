@@ -1,5 +1,6 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'date'
 require 'sla/version'
 
 Gem::Specification.new do |s|
@@ -16,15 +17,16 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   s.required_ruby_version = ">= 2.2.2"
 
-  s.add_dependency 'colsole', '~> 0.4'
-  s.add_dependency 'docopt', '~> 0.5'
-  s.add_dependency 'webcache', '~> 0.2'
-  s.add_dependency 'nokogiri', '~> 1.6'
+  s.add_dependency 'colsole', '~> 0.5'
+  s.add_dependency 'docopt', '~> 0.6'
+  s.add_dependency 'webcache', '~> 0.3'
+  s.add_dependency 'nokogiri', '~> 1.8'
 
-  s.add_development_dependency 'runfile', '~> 0.8'
-  s.add_development_dependency 'adsf', '~> 1.2'
+  s.add_development_dependency 'runfile', '~> 0.10'
+  s.add_development_dependency 'adsf', '~> 1.2' # keep below 1.4 for ruby 2.2.2
   s.add_development_dependency 'runfile-tasks', '~> 0.4'
-  s.add_development_dependency 'byebug', '~> 9.0'
-  s.add_development_dependency 'rspec', '~> 3.4'
-  s.add_development_dependency 'simplecov', '~> 0.11'
+  s.add_development_dependency 'byebug', '~> 9.1'
+  s.add_development_dependency 'rspec', '~> 3.7'
+  s.add_development_dependency 'rspec_fixtures', '~> 0.2'
+  s.add_development_dependency 'simplecov', '~> 0.15'
 end

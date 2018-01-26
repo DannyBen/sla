@@ -1,7 +1,7 @@
 require "runfile-tasks"
 require "fileutils"
 
-name    "SLA"
+title   "SLA Developer Toolkit"
 summary "Runfile tasks for building the SLA gem"
 version SLA::VERSION
 
@@ -64,4 +64,24 @@ action :dev do
   Dir.chdir 'dev' do
     run "bundle exec ruby test.rb"
   end
+end
+
+help   "run specs with and without cache, and prepare cache for CI"
+action :fullspec do
+  say "!txtgrn!--> Flushing cache"
+  execute 'flush'
+  
+  say "!txtgrn!--> Starting mock server"
+  execute 'server'
+  
+  say "!txtgrn!--> Running tests and generating cache"
+  execute 'spec'
+
+  say "!txtgrn!--> Stopping mock server"
+  execute 'server stop'
+
+  say "!txtgrn!--> Running tests against cache"
+  execute 'spec'
+
+  say "!txtgrn!--> Done"
 end

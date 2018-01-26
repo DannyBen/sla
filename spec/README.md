@@ -34,3 +34,6 @@ $ run spec           # test against server, and create cache
 $ run server stop    # stop the server
 $ run spec           # run against cache, ensure its working
 ```
+
+For convenience, you can run `run fullspec` which will execute all these
+commands together.
