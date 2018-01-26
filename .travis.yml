@@ -4,7 +4,7 @@ cache: bundler
 
 rvm:
   - 2.2.2
-  - 2.3.1
+  - 2.5.0
 
 env:
   - ON_TRAVIS=1
