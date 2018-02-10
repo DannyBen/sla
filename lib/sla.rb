@@ -2,7 +2,7 @@ require 'webcache'
 require 'nokogiri'
 require 'colsole'
 require 'singleton'
-require 'docopt'
+require 'super_docopt'
 require 'uri'
 
 require 'sla/version'

@@ -1,29 +1,17 @@
 module SLA
-  class CommandLine
-    include Singleton
+  class CommandLine < SuperDocopt::Base
     include Colsole
 
-    def execute(argv=[])
-      doc = File.read File.dirname(__FILE__) + '/docopt.txt'
-      begin
-        args = Docopt::docopt(doc, argv: argv, version: VERSION)
-        handle args
-      rescue Docopt::Exit => e
-        puts e.message
-      end
+    version VERSION
+    docopt File.expand_path 'docopt.txt', __dir__
+    subcommands ['check']
+
+    def before_execute
+      @no_color = args['--no-color']
+      @no_log = args['--no-log']
     end
 
-    private
-
-    def handle(args)
-      if args['check']
-        @no_color = args['--no-color']
-        @no_log = args['--no-log']
-        check_domain args
-      end
-    end
-
-    def check_domain(args)
+    def check
       checker = Checker.new
       checker.max_depth      = args['--depth'].to_i
       checker.check_external = args['--external']
@@ -60,6 +48,8 @@ module SLA
 
       File.write logfile, log.join("\n") unless @no_log
     end
+
+    private
 
     def color_status(status)
       return status if @no_color
