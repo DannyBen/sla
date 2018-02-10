@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = ">= 2.2.2"
 
   s.add_dependency 'colsole', '~> 0.5'
-  s.add_dependency 'docopt', '~> 0.6'
+  s.add_dependency 'super_docopt', '~> 0.1'
   s.add_dependency 'webcache', '~> 0.3'
   s.add_dependency 'nokogiri', '~> 1.8'
 

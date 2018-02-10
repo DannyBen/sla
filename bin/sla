@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
 require 'sla'
-SLA::CommandLine.instance.execute ARGV
+SLA::CommandLine.execute ARGV

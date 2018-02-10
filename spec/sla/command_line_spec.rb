@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe CommandLine do
-  let(:cli) { CommandLine.clone.instance }
+  let(:cli) { CommandLine }
 
   describe '#execute' do
     context "without arguments" do
