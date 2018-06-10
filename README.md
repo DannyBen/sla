@@ -2,9 +2,8 @@ Site Link Analyzer
 ==================================================
 
 [![Gem](https://img.shields.io/gem/v/sla.svg?style=flat-square)](https://rubygems.org/gems/sla)
-[![Build](https://img.shields.io/travis/DannyBen/sla.svg?style=flat-square)](https://travis-ci.org/DannyBen/sla)
+[![Build](https://img.shields.io/travis/DannyBen/sla.svg?style=flat-square)](https://travis-ci.com/DannyBen/sla)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f78192aead8a74535a24/maintainability)](https://codeclimate.com/github/DannyBen/sla/maintainability)
-[![Dependencies](https://img.shields.io/gemnasium/DannyBen/sla.svg?style=flat-square)](https://gemnasium.com/DannyBen/sla)
 
 ---
 
