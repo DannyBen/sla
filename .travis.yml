@@ -7,11 +7,8 @@ env:
   - CC_TEST_REPORTER_ID=8eb4f7e39f0bf365ee8ea2a6ca9f2e93d07f936e0fb3c8fafd5bc1a0615f0b14
 
 rvm:
-  - "2.2.2"
-  - "2.5.0"
-
-notifications:
-  email: false
+- "2.2.2"
+- "2.5.0"
 
 before_install:
 - gem install bundler
