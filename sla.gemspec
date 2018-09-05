@@ -25,8 +25,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'runfile', '~> 0.10'
   s.add_development_dependency 'adsf', '~> 1.2' # keep below 1.4 for ruby 2.2.2
   s.add_development_dependency 'runfile-tasks', '~> 0.4'
-  s.add_development_dependency 'byebug', '~> 9.1'
+  s.add_development_dependency 'byebug', '~> 10.0'
   s.add_development_dependency 'rspec', '~> 3.7'
-  s.add_development_dependency 'rspec_fixtures', '~> 0.2'
-  s.add_development_dependency 'simplecov', '~> 0.15'
+  s.add_development_dependency 'rspec_fixtures', '~> 0.4'
+  s.add_development_dependency 'simplecov', '~> 0.16'
 end
