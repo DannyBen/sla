@@ -12,11 +12,12 @@ module SLA
     end
 
     def check
+      $cache = WebCache.new
       checker = Checker.new
       checker.max_depth      = args['--depth'].to_i
       checker.check_external = args['--external']
-      Cache.settings.life    = Cache.life_to_seconds args['--cache']
-      Cache.settings.dir     = args['--cache-dir'] if args['--cache-dir']
+      $cache.life            = args['--cache']
+      $cache.dir             = args['--cache-dir'] if args['--cache-dir']
       logfile                = args['--log']
       start_url              = args['DOMAIN']
 
