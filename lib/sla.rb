@@ -9,4 +9,5 @@ require 'sla/version'
 require 'sla/link'
 require 'sla/checker'
 require 'sla/command_line'
-require 'sla/cache'
+
+require 'byebug' if ENV['BYEBUG']

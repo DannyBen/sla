@@ -4,10 +4,10 @@ module SLA
     attr_reader :parent
 
     def initialize(href, opts={})
-      @href         = href
-      @text         = opts[:text]
-      @depth        = opts[:depth] || 1
-      self.parent   = opts[:parent] || @href
+      @href   = href
+      @text   = opts[:text]
+      @depth  = opts[:depth] || 1
+      self.parent = opts[:parent] || @href
     end
 
     def valid?
@@ -24,9 +24,9 @@ module SLA
     end
 
     def content!
-      response = Cache.get url
-      self.status = response.error ? '404' : '200'
-      self.real_uri = response.base_uri
+      response = $cache.get url
+      @status = response.error ? '404' : '200'
+      @real_uri = response.base_uri
       response.content
     end
 
@@ -47,7 +47,7 @@ module SLA
     end
 
     def sublinks!
-      anchors = doc.css('a')
+      anchors = doc.css('a[href]')
       result = []
       anchors.each do |a|
         link = Link.new a['href'], text: a.text, parent: real_uri, depth: depth+1

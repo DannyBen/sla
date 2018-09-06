@@ -13,8 +13,7 @@ RSpec.configure do |config|
     # cache life. Cache life is 1 second if server is running,
     # otherwise it is set to a year, to allow testing on CI environments
     # where localhost server is not running.
-    cache = Cache.instance.cache
-    cache.dir = 'spec/cache'
-    cache.life = File.exist?('mock.pid') ? 1 : 86400 * 365 # days
+    $cache = WebCache.new dir: 'spec/cache'
+    $cache.life = File.exist?('mock.pid') ? 1 : '365d'
   end
 end

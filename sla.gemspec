@@ -15,18 +15,18 @@ Gem::Specification.new do |s|
   s.executables = ["sla"]
   s.homepage    = 'https://github.com/DannyBen/sla'
   s.license     = 'MIT'
-  s.required_ruby_version = ">= 2.2.2"
+  s.required_ruby_version = ">= 2.4.0"
 
   s.add_dependency 'colsole', '~> 0.5'
   s.add_dependency 'super_docopt', '~> 0.1'
-  s.add_dependency 'webcache', '~> 0.3'
+  s.add_dependency 'webcache', '~> 0.4'
   s.add_dependency 'nokogiri', '~> 1.8'
 
   s.add_development_dependency 'runfile', '~> 0.10'
   s.add_development_dependency 'adsf', '~> 1.2' # keep below 1.4 for ruby 2.2.2
   s.add_development_dependency 'runfile-tasks', '~> 0.4'
-  s.add_development_dependency 'byebug', '~> 9.1'
+  s.add_development_dependency 'byebug', '~> 10.0'
   s.add_development_dependency 'rspec', '~> 3.7'
-  s.add_development_dependency 'rspec_fixtures', '~> 0.2'
-  s.add_development_dependency 'simplecov', '~> 0.15'
+  s.add_development_dependency 'rspec_fixtures', '~> 0.4'
+  s.add_development_dependency 'simplecov', '~> 0.16'
 end
