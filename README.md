@@ -4,7 +4,6 @@ Site Link Analyzer
 [![Gem Version](https://badge.fury.io/rb/sla.svg)](https://badge.fury.io/rb/sla)
 [![Build Status](https://travis-ci.com/DannyBen/sla.svg?branch=master)](https://travis-ci.com/DannyBen/sla)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f78192aead8a74535a24/maintainability)](https://codeclimate.com/github/DannyBen/sla/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/f78192aead8a74535a24/test_coverage)](https://codeclimate.com/github/DannyBen/sla/test_coverage)
 
 ---
 
@@ -30,7 +29,7 @@ Features
 --------------------------------------------------
 
 - Easy to use command line interface
-- Built in caching, to avoid over stressing the server
+- Built in caching, to avoid overtaxing the server
 - Outputs the site tree to screen and log file
 
 
