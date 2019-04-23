@@ -30,7 +30,7 @@ Features
 --------------------------------------------------
 
 - Easy to use command line interface
-- Built in caching, to avoid over stressing the server
+- Built in caching, to avoid overtaxing the server
 - Outputs the site tree to screen and log file
 
 
