@@ -1,4 +1,9 @@
 #!/usr/bin/env ruby
 
 require 'sla'
-SLA::CommandLine.execute ARGV
+
+begin
+  SLA::CommandLine.execute ARGV
+rescue SLA::BrokenLinks => e
+  exit 1
+end

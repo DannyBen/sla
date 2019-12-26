@@ -7,6 +7,8 @@ Bundler.require :default, :development
 
 include SLA
 
+ENV['TTY'] = 'on'
+
 RSpec.configure do |config|
   config.before :suite do
     # Prepare the cache object with an appropriate cache dir and
