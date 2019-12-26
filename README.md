@@ -61,11 +61,11 @@ Usage:
 
 Commands:
   check
-    Start checking for broken links on a given domain
+    Start checking for broken links on a given domain.
   
 Options:
   --depth, -d DEPTH
-    Set crawling depth [default: 5]
+    Set crawling depth [default: 5].
 
   --cache, -c LIFE
     Set cache life [default: 1d]. LIFE can be in any of the 
@@ -77,24 +77,24 @@ Options:
       10d = 10 days
 
   --cache-dir DIR
-    Set the cache directory
+    Set the cache directory.
 
   --external, -x
-    Also check external links
+    Also check external links.
 
-  --no-color
-    Disable colors in output
+  --log, -l LOGFILE
+    Save errors to log file.
 
-  --no-log
-    Disable logging
-
-  --log LOGFILE
-    Set the name of the logfile [default: sla.log]
+  --ignore, -i URLS
+    Specify a list of space delimited URLs to skip.
+    URLs that start with the strings in this list will be skipped.
 
 Examples:
   sla check example.com
   sla check example.com -c10m -d10
-  sla check example.com --cache-dir my_cache --no-log
+  sla check example.com --cache-dir my_cache
   sla check example.com --depth 10 --log my_log.log
   sla check example.com --cache 30d
+  sla check example.com --ignore "/admin /customer/login"
+
 ```
