@@ -12,6 +12,8 @@ require 'sla/checker'
 require 'sla/command_line'
 
 if ENV['BYEBUG']
+  # :nocov:
   require 'byebug'
   require 'lp'
+  # :nocov:
 end
