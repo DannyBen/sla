@@ -4,7 +4,13 @@ require 'sla'
 
 begin
   SLA::CommandLine.execute ARGV
+
 rescue SLA::BrokenLinks => e
   puts "(exit code 1)"
   exit 1
+
+rescue Interrupt
+  puts "\nGoodbye"
+  exit 1
+
 end
