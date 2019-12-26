@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe CommandLine do
   let(:cli) { CommandLine }
+
   before { ENV['SLA_ALLOW_FAILS'] = "1" }
   after  { ENV['SLA_ALLOW_FAILS'] = nil }
 
@@ -64,7 +65,7 @@ describe CommandLine do
         it "raises BrokenLinks error" do
           expect {
             expect { cli.execute command }.to raise_error(BrokenLinks)
-          }.to output_fixture("check")
+          }.to output_fixture("check-broken")
         end
       end
 

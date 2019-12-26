@@ -1,0 +1,3 @@
+Usage:
+  sla check DOMAIN [options]
+  sla (-h|--help|--version)
