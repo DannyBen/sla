@@ -21,10 +21,10 @@ module SLA
       # :nocov:
 
       checker = Checker.new
-      checker.max_depth      = args['--depth'].to_i
+      checker.max_depth = args['--depth'].to_i
       checker.check_external = args['--external']
-      logfile                = args['--log']
-      start_url              = args['DOMAIN']
+      logfile = args['--log']
+      start_url = args['DOMAIN']
 
       start_url = "http://#{start_url}" unless start_url[0..3] == 'http'
 
@@ -53,22 +53,25 @@ module SLA
       log.push "Done with #{failed} failures" unless @no_log
 
       File.write logfile, log.join("\n") unless @no_log
+
+      raise BrokenLinks if failed > 0
     end
 
-    private
+  private
 
     def color_status(status)
       return status if @no_color
-      # :nocov:
+
       case status
       when '200'
         '!txtgrn!200!txtrst!'
       when '404'
         '!txtred!404!txtrst!'
       else
+        # :nocov:
         status
+        # :nocov:
       end
-      # :nocov:
     end
 
   end

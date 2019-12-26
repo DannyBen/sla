@@ -1,5 +1,6 @@
 require "runfile-tasks"
 require "fileutils"
+require "sla"
 
 title   "SLA Developer Toolkit"
 summary "Runfile tasks for building the SLA gem"
