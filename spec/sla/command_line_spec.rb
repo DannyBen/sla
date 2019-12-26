@@ -9,13 +9,13 @@ describe CommandLine do
   describe '#execute' do
     context "without arguments" do
       it "shows usage patterns" do
-        expect { cli.execute }.to output_fixture('cli/usage').to_stdout
+        expect { cli.execute }.to output_fixture('cli/usage')
       end
     end
 
     context "--help" do
       it "shows help" do
-        expect { cli.execute ["--help"] }.to output_fixture('cli/help').diff(2)
+        expect { cli.execute ["--help"] }.to output_fixture('cli/help')
       end
     end
 

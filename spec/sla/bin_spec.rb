@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'bin/sla' do
   it "works" do
-    expect(`bin/sla`).to match_fixture('bin/usage').diff(1)
+    expect(`bin/sla`).to match_fixture('bin/usage')
   end
 
   context "on failures" do

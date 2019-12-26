@@ -13,6 +13,5 @@ gem 'rspec_fixtures'
 gem 'runfile'
 gem 'runfile-tasks'
 gem 'simplecov'
-gem 'colsole', github: 'dannyben/colsole', branch: 'terminal-say-fix'
 
 gemspec
