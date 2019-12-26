@@ -14,16 +14,20 @@ describe CommandLine do
       let(:command) { %w[check http://localhost:3000/] }
 
       it "outputs report" do
-        expect { cli.execute command }.to output_fixture('check1').to_stdout
-      rescue BrokenLinks
+        begin
+          expect { cli.execute command }.to output_fixture('check1').to_stdout
+        rescue BrokenLinks
+        end
       end
 
       context "with --external" do
         let(:command) { %w[check http://localhost:3000/ --external] }
 
         it "checks external links" do
-          expect { cli.execute command }.to output_fixture('check2').to_stdout
-        rescue BrokenLinks
+          begin
+            expect { cli.execute command }.to output_fixture('check2').to_stdout
+          rescue BrokenLinks
+          end
         end
       end
 
