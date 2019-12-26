@@ -9,7 +9,7 @@ Site Link Analyzer
 
 SLA is a simple broken links checker, with built in caching.
 
----
+![SLA Demo](demo/cast.svg "SLA Demo")
 
 Install
 --------------------------------------------------
@@ -18,34 +18,14 @@ Install
 $ gem install sla
 ```
 
-Or with bundler:
-
-```ruby
-gem 'sla'
-```
-
 
 Features
 --------------------------------------------------
 
-- Easy to use command line interface
-- Built in caching, to avoid overtaxing the server
-- Outputs the site tree to screen and log file
-
-
-Example Output
---------------------------------------------------
-```
-$ sla check localhost:3000
-1 200 - http://localhost:3000
-2 200 -- /whiskey
-3 200 --- /whiskey/tango
-4 404 ---- /whiskey/tango/foxtrot
-5 200 -- /ten
-6 200 --- /ten/four
-7 200 -- /roger
-Done with 1 failures
-```
+- Easy to use command line interface.
+- Built in caching, to avoid overtaxing the server.
+- Show and save list of broken links to a log file.
+- Exits with non zero code on failure, for CI integration.
 
 
 Usage
