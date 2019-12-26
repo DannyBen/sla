@@ -9,13 +9,13 @@ describe CommandLine do
   describe '#execute' do
     context "without arguments" do
       it "shows usage patterns" do
-        expect { cli.execute }.to output_fixture('usage')
+        expect { cli.execute }.to output_fixture('cli/usage')
       end
     end
 
     context "--help" do
       it "shows help" do
-        expect { cli.execute ["--help"] }.to output_fixture('help')
+        expect { cli.execute ["--help"] }.to output_fixture('cli/help')
       end
     end
 
@@ -23,14 +23,14 @@ describe CommandLine do
       let(:command) { %w[check http://localhost:3000/] }
 
       it "outputs report" do
-        expect { cli.execute command }.to output_fixture('check')
+        expect { cli.execute command }.to output_fixture('cli/check')
       end
 
       context "--external" do
         let(:command) { %w[check http://localhost:3000/ --external] }
 
         it "checks external links" do
-          expect { cli.execute command }.to output_fixture('check-external')
+          expect { cli.execute command }.to output_fixture('cli/check-external')
         end
       end
 
@@ -38,7 +38,7 @@ describe CommandLine do
         let(:command) { ['check', 'http://localhost:3000/', '--ignore', "/roger /whiskey"] }
 
         it "skips URLs that start with the provided strings" do
-          expect { cli.execute command }.to output_fixture('check-ignore')
+          expect { cli.execute command }.to output_fixture('cli/check-ignore')
         end
       end
 
@@ -51,8 +51,8 @@ describe CommandLine do
         end
 
         it "saves errors to log file" do
-          expect { cli.execute command }.to output_fixture('check')
-          expect(File.read 'spec.log').to match_fixture('logfile')
+          expect { cli.execute command }.to output_fixture('cli/check-log')
+          expect(File.read 'spec.log').to match_fixture('cli/check-logfile')
         end
       end
 
@@ -65,7 +65,7 @@ describe CommandLine do
         it "raises BrokenLinks error" do
           expect {
             expect { cli.execute command }.to raise_error(BrokenLinks)
-          }.to output_fixture("check-broken")
+          }.to output_fixture("cli/check-broken")
         end
       end
 
