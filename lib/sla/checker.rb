@@ -2,12 +2,13 @@ module SLA
   class Checker
     include Colsole
 
-    attr_accessor :max_depth, :checked_links, :check_external
+    attr_accessor :max_depth, :checked_links, :check_external, :ignore
 
     def initialize
       @max_depth = 10
       @checked_links = []
       @check_external = false
+      @ignore = []
     end
 
     def count
@@ -17,7 +18,10 @@ module SLA
     def check(link, depth=1, &block)
       link = Link.new link, depth: depth if link.is_a? String
 
-      return if link.external? && !@check_external
+      return if link.external? && !check_external
+      ignore.each do |ignored|
+        return if link.ident.start_with? ignored
+      end
 
       link.validate
       yield link if block_given?

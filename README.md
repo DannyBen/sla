@@ -79,7 +79,7 @@ Options:
   --cache-dir DIR
     Set the cache directory
 
-  --external
+  --external, -x
     Also check external links
 
   --no-color

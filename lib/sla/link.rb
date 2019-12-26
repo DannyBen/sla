@@ -24,7 +24,7 @@ module SLA
     end
 
     def content!
-      response = $cache.get url
+      response = WebCache.get url
       @status = response.error ? '404' : '200'
       @real_uri = response.base_uri
       response.content
