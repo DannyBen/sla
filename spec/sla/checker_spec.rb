@@ -31,7 +31,7 @@ describe Checker do
   describe '#count' do
     it "returns the number of checked links" do
       checker.check base
-      expect(checker.count).to eq 9
+      expect(checker.count).to eq 10
     end
   end
 

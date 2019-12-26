@@ -7,28 +7,25 @@ module SLA
     subcommands ['check']
 
     def before_execute
-      @no_color = args['--no-color']
-      @no_log = args['--no-log']
+      WebCache.life = args['--cache']
+      WebCache.dir  = args['--cache-dir'] if args['--cache-dir']
     end
 
     def check
-      # :nocov:
-      if !$cache 
-        $cache ||= WebCache.new
-        $cache.life = args['--cache']
-        $cache.dir  = args['--cache-dir'] if args['--cache-dir']
-      end
-      # :nocov:
-
       checker = Checker.new
       checker.max_depth = args['--depth'].to_i
-      checker.check_external = args['--external']
       logfile = args['--log']
       start_url = args['DOMAIN']
+      ignore = args['--ignore']
+      ignore = ignore.split " " if ignore
+      screen_width = terminal_width
+      
+      checker.check_external = args['--external']
+      checker.ignore = ignore if ignore
 
       start_url = "http://#{start_url}" unless start_url[0..3] == 'http'
 
-      File.unlink logfile if File.exist? logfile
+      File.unlink logfile if logfile and File.exist? logfile
 
       count = 1
       failed = 0
@@ -36,32 +33,40 @@ module SLA
       log = []
 
       checker.check start_url do |link|
-        indent = '-' * link.depth
-
         status = link.status
         colored_status = color_status status
-        failed +=1 if status != '200'
+        if status != '200'
+          failed +=1 
+          resay "#{colored_status} #{link.ident}"
+          log.push "#{status}  #{link.ident}" if logfile
+        end
 
-        say "#{count} #{colored_status} #{indent} #{link.ident}"
-        log.push "#{count} #{status} #{indent} #{link.ident}" unless @no_log
+        message = "[#{failed}/#{count} @ #{link.depth}] #{status}"
+        remaining_width = screen_width - message.size - 4
+        trimmed_link = link.ident[0..remaining_width]
+        
+        resay "[#{failed}/#{count} @ #{link.depth}] #{colored_status} #{trimmed_link} "
         count += 1
+
+        sleep ENV['SLA_SLEEP'].to_f if ENV['SLA_SLEEP']
       end
 
       color = failed > 0 ? '!txtred!' : '!txtgrn!'
-      color = "" if @no_color
-      say "#{color}Done with #{failed} failures"
-      log.push "Done with #{failed} failures" unless @no_log
+      resay "#{color}Done checking #{count} links with #{failed} failures"
 
-      File.write logfile, log.join("\n") unless @no_log
+      if logfile      
+        logstring = log.join("\n") + "\n"
+        File.write logfile, logstring
+      end
 
-      raise BrokenLinks if failed > 0
+      if failed > 0 and !ENV['SLA_ALLOW_FAILS']
+        raise BrokenLinks 
+      end
     end
 
   private
 
     def color_status(status)
-      return status if @no_color
-
       case status
       when '200'
         '!txtgrn!200!txtrst!'

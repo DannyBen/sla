@@ -5,7 +5,6 @@ Gemfile.lock
 /coverage
 /doc
 /cache
-/spec/cache
 
 .bundle
 .byebug_history
