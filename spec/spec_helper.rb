@@ -7,7 +7,7 @@ Bundler.require :default, :development
 
 include SLA
 
-# Enable Colsole colors in testing mode
+# Fool Colsole to think it is in TTY so that we print "resay" normally
 ENV['TTY'] = 'off'
 
 # When testing, we want clean cache
