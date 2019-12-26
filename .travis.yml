@@ -12,4 +12,5 @@ before_install:
 - gem install bundler
 
 script:
+- bundle exec run server
 - bundle exec rspec
