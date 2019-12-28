@@ -1,0 +1,6 @@
+[0/1 @ 1] PASS http://localhost:3000/whiskey/ 
+[0/2 @ 1] PASS http://localhost:3000/ten/ 
+[0/3 @ 1] PASS http://localhost:3000/roger/ 
+[0/4 @ 1] PASS http://localhost:3000/about/ 
+
+Checked 4 pages with 0 failures

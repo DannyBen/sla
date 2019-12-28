@@ -1,19 +1,6 @@
-[0/1 @ 1] 200 /
-[0/2 @ 2] 200 /whiskey
-[0/3 @ 3] 200 /about
-[0/4 @ 4] 200 /about/contact
-[0/5 @ 3] 200 /whiskey/tango
-404 /whiskey/tango/foxtrot
-[1/6 @ 4] 404 /whiskey/tango/foxtrot
-404 /whiskey/tango/bang
-[2/7 @ 4] 404 /whiskey/tango/bang
-[2/8 @ 4] 200 /about
-[2/9 @ 2] 200 /ten
-[2/10 @ 3] 200 /about
-[2/11 @ 3] 200 /ten/four
-[2/12 @ 4] 200 /about
-[2/13 @ 2] 200 /roger
-[2/14 @ 3] 200 /about
-[2/15 @ 2] 200 /about
-Done checking 16 links with 2 failures
+SOURCE  http://localhost:3000/whiskey/tango/
+  FAIL  3  http://localhost:3000/whiskey/tango/foxtrot
+  FAIL  3  http://localhost:3000/whiskey/tango/bang
+
+Checked 9 pages with 2 failures
 (exit code 1)

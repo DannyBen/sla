@@ -1,9 +1,11 @@
 #!/usr/bin/env ruby
-
 require 'sla'
+include Colsole
+
+router = MisterBin::Runner.new handler: SLA::Command
 
 begin
-  SLA::CommandLine.execute ARGV
+  exit router.run ARGV
 
 rescue SLA::BrokenLinks => e
   puts "(exit code 1)"

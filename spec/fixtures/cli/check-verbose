@@ -1,0 +1,37 @@
+
+SOURCE  http://localhost:3000
+  PASS  1  http://localhost:3000/whiskey/
+  PASS  1  http://localhost:3000/ten/
+  PASS  1  http://localhost:3000/roger/
+  PASS  1  http://localhost:3000/about/
+
+SOURCE  http://localhost:3000/whiskey/
+  SKIP  2  http://localhost:3000/about
+  PASS  2  http://localhost:3000/whiskey/tango/
+
+SOURCE  http://localhost:3000/about/
+  PASS  3  http://localhost:3000/about/contact/
+
+SOURCE  http://localhost:3000/about/contact/
+
+SOURCE  http://localhost:3000/whiskey/tango/
+  FAIL  3  http://localhost:3000/whiskey/tango/foxtrot
+  FAIL  3  http://localhost:3000/whiskey/tango/bang
+  SKIP  3  http://localhost:3000/about
+
+SOURCE  http://localhost:3000/ten/
+  SKIP  2  http://localhost:3000/about
+  PASS  2  http://localhost:3000/ten/four/
+
+SOURCE  http://localhost:3000/ten/four/
+  SKIP  3  http://localhost:3000/about
+
+SOURCE  http://localhost:3000/roger/
+  SKIP  2  http://localhost:3000/about
+
+SOURCE  http://localhost:3000/about/
+  SKIP  2  http://localhost:3000/about/contact
+
+SOURCE  http://localhost:3000/about/contact/
+
+Checked 9 pages with 2 failures

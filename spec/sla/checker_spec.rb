@@ -1,38 +1,19 @@
 require 'spec_helper'
 
 describe Checker do
-  let(:checker) { Checker.new }
-  let(:base) { 'http://localhost:3000/' }
+  subject { Checker.new }
+  let(:url) { 'http://localhost:3000/' }
+  let(:page) { Page.new url }
 
   describe '#check' do
-    it "yields link objects as results" do
-      checker.check base do |result| 
-        expect(result).to be_a Link
-      end
-    end
-
-    context "with not found url" do
-      it "sets status to 404" do
-        checker.check('http://localhost:3000/not-found') do |link|
-          expect(link.status).to eq '404'
+    it "yields action code and page object" do
+      subject.check page do |action, page|
+        expect(action).to satisfy do |value|
+          [:source, :check, :skip].include?(value)
         end
-      end
-    end
 
-    context "with found url" do
-      it "sets status to 200" do
-        checker.check('http://localhost:3000/found') do |link|
-          expect(link.status).to eq '200'
-        end
+        expect(page).to be_a Page
       end
     end
   end
-
-  describe '#count' do
-    it "returns the number of checked links" do
-      checker.check base
-      expect(checker.count).to eq 10
-    end
-  end
-
 end
