@@ -12,6 +12,7 @@ require 'sla/checker'
 
 require 'sla/formatters/base'
 require 'sla/formatters/verbose'
+require 'sla/formatters/simple'
 require 'sla/formatters/tty'
 
 require 'sla/command'

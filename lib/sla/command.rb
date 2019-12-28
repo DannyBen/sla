@@ -12,7 +12,8 @@ module SLA
     param "URL", "URL to scan"
 
     option "--depth, -d DEPTH", "Set crawling depth [default: 5]"
-    option "--verbose, -v", "|Show detailed output"
+    option "--verbose, -v", "Show detailed output"
+    option "--simple, -s", "Show simple output of errors only"
     option "--cache, -c LIFE", "Set cache life [default: 1d]. LIFE can be in any of the following formats:\n  10  = 10 seconds\n  20s = 20 seconds\n  10m = 10 minutes\n  10h = 10 hours\n  10d = 10 days"
     option "--cache-dir DIR", "Set the cache directory"
     option "--external, -x", "Also check external links"
@@ -22,8 +23,11 @@ module SLA
     example "sla example.com -c10m -d10"
     example "sla example.com --cache-dir my_cache"
     example "sla example.com --depth 10"
-    example "sla example.com --cache 30d"
+    example "sla example.com --cache 30d --external"
+    example "sla example.com --simple > out.log"
     example "sla example.com --ignore \"/admin /customer/login\""
+
+    environment "SLA_SLEEP", "Set number of seconds to sleep between calls (for debugging purposes)"
 
     def run
       WebCache.life = args['--cache']
@@ -34,12 +38,17 @@ module SLA
       ignore = args['--ignore']
       ignore = ignore.split " " if ignore
       check_external = args['--external']
-      verbose = args['--verbose']
 
       checker = Checker.new max_depth: max_depth,
         ignore: ignore, check_external: check_external
 
-      formatter = verbose ? Formatters::Verbose.new : Formatters::TTY.new
+      formatter = if args['--verbose'] 
+        Formatters::Verbose.new
+      elsif args['--simple']
+        Formatters::Simple.new
+      else
+        Formatters::TTY.new
+      end
 
       execute url, checker, formatter
     end

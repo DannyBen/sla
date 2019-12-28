@@ -20,11 +20,11 @@ module SLA
           color = "!txtred!"
 
           if last_source
-            say "\033[2K\r!txtpur!SOURCE  #{last_source}"
+            resay "!txtpur!SOURCE  #{last_source}"
             @last_source = nil
           end
 
-          resay "\033[2K\r  !txtred!FAIL!txtrst!  #{page.depth}  #{page.url}"
+          resay "  !txtred!FAIL!txtrst!  #{page.depth}  #{page.url}"
         end
 
         message = "[#{failed}/#{count} @ #{page.depth}] #{status}"
@@ -34,7 +34,7 @@ module SLA
       end
 
       def footer_prefix
-        "\033[2K\n"
+        terminal? ? "\033[2K\n" : "\n"
       end
 
 
