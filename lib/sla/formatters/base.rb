@@ -18,9 +18,13 @@ module SLA
         raise NotImplementedError
       end
 
+      def footer_prefix
+        "\n"
+      end
+
       def footer
         color = success? ? '!txtgrn!' : '!txtred!'
-        say "\n\n#{color}Checked #{count} pages with #{failed} failures"
+        say "#{footer_prefix}#{color}Checked #{count} pages with #{failed} failures"
       end
 
     end

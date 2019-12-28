@@ -20,11 +20,11 @@ module SLA
           color = "!txtred!"
 
           if last_source
-            say "\n!txtpur!SOURCE  #{last_source}"
+            say "\033[2K\r!txtpur!SOURCE  #{last_source}"
             @last_source = nil
           end
 
-          resay "  !txtred!FAIL!txtrst!  #{page.depth}  #{page.url}"
+          resay "\033[2K\r  !txtred!FAIL!txtrst!  #{page.depth}  #{page.url}"
         end
 
         message = "[#{failed}/#{count} @ #{page.depth}] #{status}"
@@ -32,6 +32,11 @@ module SLA
         url = page.url[0..remaining_width]
         resay "[#{failed}/#{count} @ #{page.depth}] #{color}#{status}!txtrst! #{url} "
       end
+
+      def footer_prefix
+        "\033[2K\n"
+      end
+
 
     end
   end
