@@ -21,7 +21,7 @@ class Page
   end
 
   def inspect
-    "#<Page url: #{url}, depth: #{depth}, parent: #{parent.url}>"
+    "#<Page url: #{url}, depth: #{depth}>"
   end
 
   def pages

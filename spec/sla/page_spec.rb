@@ -55,6 +55,12 @@ describe Page do
     end
   end
 
+  describe '#inspect' do
+    it "returns a friendly string representation" do
+      expect(subject.inspect).to eq "#<Page url: http://localhost:3000, depth: 0>"
+    end
+  end
+
   describe '#pages' do
     it "returns an array of linked pages" do
       expect(subject.pages).to be_an Array

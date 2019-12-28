@@ -15,7 +15,9 @@ module SLA
       end
 
       def handle(action, page)
+        # :nocov:
         raise NotImplementedError
+        # :nocov:
       end
 
       def footer_prefix
