@@ -9,61 +9,99 @@ module SLA
     def before_execute
       WebCache.life = args['--cache']
       WebCache.dir  = args['--cache-dir'] if args['--cache-dir']
+      @count, @failed = 0, 0
     end
 
     def check
-      checker = Checker.new
-      checker.max_depth = args['--depth'].to_i
-      logfile = args['--log']
-      start_url = args['URL']
+      max_depth = args['--depth'].to_i
+      url = args['URL']
       ignore = args['--ignore']
       ignore = ignore.split " " if ignore
-      screen_width = terminal_width
-      
-      checker.check_external = args['--external']
-      checker.ignore = ignore if ignore
+      check_external = args['--external']
 
-      start_url = "http://#{start_url}" unless start_url[0..3] == 'http'
+      checker = Checker.new max_depth: max_depth,
+        ignore: ignore, check_external: check_external
 
-      File.unlink logfile if logfile and File.exist? logfile
+      execute checker, url
+    end
 
-      count = 0
-      failed = 0
-
-      log = []
-
-      checker.start start_url do |link|
-        count += 1
-
-        status = link.status
-        colored_status = color_status status
-        if status != '200'
-          failed +=1 
-          resay "#{colored_status} #{link.ident}"
-          log.push "#{status}  #{link.ident}" if logfile
-        end
-
-        message = "[#{failed}/#{count} @ #{link.depth}] #{status}"
-        remaining_width = screen_width - message.size - 4
-        trimmed_link = link.ident[0..remaining_width]
-        
-        resay "[#{failed}/#{count} @ #{link.depth}] #{colored_status} #{trimmed_link} "
-
-        sleep ENV['SLA_SLEEP'].to_f if ENV['SLA_SLEEP']
+    def execute(checker, url)
+      page = Page.new url
+      checker.check page do |action, page|
+        success = handle action, page
       end
 
-      color = failed > 0 ? '!txtred!' : '!txtgrn!'
-      resay "#{color}Done checking #{count} links with #{failed} failures"
+      success = @failed == 0
 
-      if logfile      
-        logstring = log.join("\n") + "\n"
-        File.write logfile, logstring
-      end
+      color = success ? '!txtgrn!' : '!txtred!'
+      say "\n#{color}Checked #{@count} pages with #{@failed} failures"
 
-      if failed > 0 and !ENV['SLA_ALLOW_FAILS']
+      unless success  or ENV['SLA_ALLOW_FAILS']
         raise BrokenLinks 
       end
     end
+
+    def handle(action, page)
+      case action
+      when :source
+        say "\n!txtpur!SOURCE  #{page.url}"
+      
+      when :check
+        @count += 1
+
+        if page.valid?
+          status = "PASS"
+          color = "!txtgrn!"
+        else
+          @failed += 1
+          status = "FAIL"
+          color = "!txtred!"
+        end
+
+        say "  #{color}#{status}!txtrst!  #{page.depth}  #{page.url}"
+
+      when :skip
+        say "  !txtblu!SKIP!txtrst!  #{page.depth}  #{page.url}"
+
+      end
+    end
+
+    # screen_width = terminal_width
+    
+    # count = 0
+    # failed = 0
+
+    # checker.start start_url do |link|
+    #   count += 1
+
+    #   status = link.status
+    #   colored_status = color_status status
+    #   if status != '200'
+    #     failed +=1 
+    #     resay "#{colored_status} #{link.ident}"
+    #     log.push "#{status}  #{link.ident}" if logfile
+    #   end
+
+    #   message = "[#{failed}/#{count} @ #{link.depth}] #{status}"
+    #   remaining_width = screen_width - message.size - 4
+    #   trimmed_link = link.ident[0..remaining_width]
+      
+    #   resay "[#{failed}/#{count} @ #{link.depth}] #{colored_status} #{trimmed_link} "
+
+    #   sleep ENV['SLA_SLEEP'].to_f if ENV['SLA_SLEEP']
+    # end
+
+    # color = failed > 0 ? '!txtred!' : '!txtgrn!'
+    # resay "#{color}Done checking #{count} links with #{failed} failures"
+
+    # if logfile      
+    #   logstring = log.join("\n") + "\n"
+    #   File.write logfile, logstring
+    # end
+
+    # if failed > 0 and !ENV['SLA_ALLOW_FAILS']
+    #   raise BrokenLinks 
+    # end
 
   private
 

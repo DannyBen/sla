@@ -4,7 +4,7 @@ module SLA
     attr_reader :parent
 
     def initialize(href, opts={})
-      @href   = href
+      @href   = href.split('#').first
       @text   = opts[:text]
       @depth  = opts[:depth] || 0
       self.parent = opts[:parent] || @href
@@ -57,7 +57,7 @@ module SLA
     end
 
     def uri
-      @uri ||= URI.parse href
+      @uri ||= URI.parse(href)
     end
 
     def parent=(url)

@@ -27,9 +27,6 @@ Options:
   --external, -x
     Also check external links.
 
-  --log, -l LOGFILE
-    Save errors to log file.
-
   --ignore, -i URLS
     Specify a list of space delimited URLs to skip.
     URLs that start with the strings in this list will be skipped.
@@ -38,6 +35,6 @@ Examples:
   sla check example.com
   sla check example.com -c10m -d10
   sla check example.com --cache-dir my_cache
-  sla check example.com --depth 10 --log my_log.log
+  sla check example.com --depth 10
   sla check example.com --cache 30d
   sla check example.com --ignore "/admin /customer/login"

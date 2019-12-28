@@ -1,62 +1,54 @@
 module SLA
   class Checker
-    include Colsole
+    attr_reader :max_depth, :ignore, :check_external
 
-    attr_accessor :max_depth, :checked_links, :check_external, :ignore
-
-    def initialize
-      @max_depth = 10
-      @checked_links = []
-      @check_external = false
-      @ignore = []
+    def initialize(max_depth: 5, ignore: nil, check_external: false)
+      @max_depth = max_depth
+      @ignore = ignore
+      @check_external = check_external
     end
 
-    def count
-      checked_links.count
+    def deeply_checked
+      @deeply_checked ||= {}
     end
 
-    def start(link, &block)
-      link = Link.new link
-      check link, &block
+    def checked
+      @checked ||= {}
     end
 
-  private
-
-    def check(link, &block)
-      return unless validate link, &block
-
-      link.sublinks.each do |sublink|
-        validate sublink, &block
-      end
-      
-      if link.depth < max_depth
-        link.sublinks.each do |sublink|
-          check sublink, &block
+    def check(page, &block)
+      if ignore
+        ignore.each do |pattern|
+          return if page.url.include? pattern
         end
       end
 
-      checked_links.push link.ident
-    end
+      return if page.depth >= max_depth
+      return unless page.valid?
 
-    def validate(link, &block)
-      return false if skip? link
+      yield [:source, page] if block_given?
 
-      link.validate
-      yield link if block_given?
+      pages = page.pages
+      pages.reject! { |page| page.external? } if !check_external
 
-      true
-    end
-
-    def skip?(link)
-      return true if link.external? && !check_external
-      return true if checked_links.include? link.ident
-
-      ignore.each do |ignored|
-        return true if link.ident.start_with? ignored
+      pages.each do |page|
+        if checked.has_key? page.url
+          yield [:skip, page] if block_given?
+        else
+          checked[page.url] = true
+          yield [:check, page] if block_given?
+        end
       end
 
-      return false
+      pages.each do |page|
+        next if deeply_checked.has_key? page.url
+        deeply_checked[page.url] = true
+        next if page.external?
+        check page, &block
+      end
+
     end
 
   end
 end
+

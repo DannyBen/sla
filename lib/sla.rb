@@ -7,7 +7,7 @@ require 'uri'
 
 require 'sla/version'
 require 'sla/exceptions'
-require 'sla/link'
+require 'sla/page'
 require 'sla/checker'
 require 'sla/command_line'
 
