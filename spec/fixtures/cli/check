@@ -3,12 +3,12 @@
 [0/3 @ 1] PASS http://localhost:3000/roger/ 
 [0/4 @ 1] PASS http://localhost:3000/about/ 
 [0/5 @ 2] PASS http://localhost:3000/whiskey/tango/ 
+[0/6 @ 3] PASS http://localhost:3000/about/contact/ 
 SOURCE  http://localhost:3000/whiskey/tango/
   FAIL  3  http://localhost:3000/whiskey/tango/foxtrot
-[1/6 @ 3] FAIL http://localhost:3000/whiskey/tango/foxtrot 
+[1/7 @ 3] FAIL http://localhost:3000/whiskey/tango/foxtrot 
   FAIL  3  http://localhost:3000/whiskey/tango/bang
-[2/7 @ 3] FAIL http://localhost:3000/whiskey/tango/bang 
-[2/8 @ 4] PASS http://localhost:3000/about/contact/ 
+[2/8 @ 3] FAIL http://localhost:3000/whiskey/tango/bang 
 [2/9 @ 2] PASS http://localhost:3000/ten/four/ 
 
 Checked 9 pages with 2 failures
