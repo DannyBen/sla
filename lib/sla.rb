@@ -9,6 +9,11 @@ require 'sla/version'
 require 'sla/exceptions'
 require 'sla/page'
 require 'sla/checker'
+
+require 'sla/formatters/base'
+require 'sla/formatters/verbose'
+require 'sla/formatters/tty'
+
 require 'sla/command_line'
 
 if ENV['BYEBUG']

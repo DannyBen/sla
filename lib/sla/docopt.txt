@@ -12,6 +12,9 @@ Options:
   --depth, -d DEPTH
     Set crawling depth [default: 5].
 
+  --verbose, -v
+    Show detailed output.
+
   --cache, -c LIFE
     Set cache life [default: 1d]. LIFE can be in any of the 
     following formats:
