@@ -15,28 +15,48 @@ module SLA
       checked_links.count
     end
 
-    def check(link, depth=1, &block)
-      link = Link.new link, depth: depth if link.is_a? String
+    def start(link, &block)
+      link = Link.new link
+      check link, &block
+    end
 
-      return if link.external? && !check_external
-      ignore.each do |ignored|
-        return if link.ident.start_with? ignored
+  private
+
+    def check(link, &block)
+      return unless validate link, &block
+
+      link.sublinks.each do |sublink|
+        validate sublink, &block
       end
+      
+      if link.depth < max_depth
+        link.sublinks.each do |sublink|
+          check sublink, &block
+        end
+      end
+
+      checked_links.push link.ident
+    end
+
+    def validate(link, &block)
+      return false if skip? link
 
       link.validate
       yield link if block_given?
 
-      return if checked_links.include? link.url
-
-      checked_links.push link.url
-
-      return if link.external?
-      return unless link.valid?
-      return if depth >= max_depth
-      
-      link.sublinks.each do |sublink|
-        check sublink, depth+1, &block
-      end
+      true
     end
+
+    def skip?(link)
+      return true if link.external? && !check_external
+      return true if checked_links.include? link.ident
+
+      ignore.each do |ignored|
+        return true if link.ident.start_with? ignored
+      end
+
+      return false
+    end
+
   end
 end

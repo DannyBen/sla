@@ -1,7 +1,7 @@
 SLA
 
 Usage:
-  sla check DOMAIN [options]
+  sla check URL [options]
   sla (-h|--help|--version)
 
 Commands:

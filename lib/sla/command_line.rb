@@ -15,7 +15,7 @@ module SLA
       checker = Checker.new
       checker.max_depth = args['--depth'].to_i
       logfile = args['--log']
-      start_url = args['DOMAIN']
+      start_url = args['URL']
       ignore = args['--ignore']
       ignore = ignore.split " " if ignore
       screen_width = terminal_width
@@ -27,12 +27,14 @@ module SLA
 
       File.unlink logfile if logfile and File.exist? logfile
 
-      count = 1
+      count = 0
       failed = 0
 
       log = []
 
-      checker.check start_url do |link|
+      checker.start start_url do |link|
+        count += 1
+
         status = link.status
         colored_status = color_status status
         if status != '200'
@@ -46,7 +48,6 @@ module SLA
         trimmed_link = link.ident[0..remaining_width]
         
         resay "[#{failed}/#{count} @ #{link.depth}] #{colored_status} #{trimmed_link} "
-        count += 1
 
         sleep ENV['SLA_SLEEP'].to_f if ENV['SLA_SLEEP']
       end

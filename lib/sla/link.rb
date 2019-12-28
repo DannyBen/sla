@@ -6,7 +6,7 @@ module SLA
     def initialize(href, opts={})
       @href   = href
       @text   = opts[:text]
-      @depth  = opts[:depth] || 1
+      @depth  = opts[:depth] || 0
       self.parent = opts[:parent] || @href
     end
 
