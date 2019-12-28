@@ -11,13 +11,13 @@ module SLA
 
     param "URL", "URL to scan"
 
-    option "--depth, -d DEPTH", "Set crawling depth [default: 5]"
     option "--verbose, -v", "Show detailed output"
     option "--simple, -s", "Show simple output of errors only"
-    option "--cache, -c LIFE", "Set cache life [default: 1d]. LIFE can be in any of the following formats:\n  10  = 10 seconds\n  20s = 20 seconds\n  10m = 10 minutes\n  10h = 10 hours\n  10d = 10 days"
-    option "--cache-dir DIR", "Set the cache directory"
+    option "--depth, -d DEPTH", "Set crawling depth [default: 5]"
     option "--external, -x", "Also check external links"
     option "--ignore, -i URLS", "Specify a list of space delimited patterns to skip\nURLs that contain any of the strings in this list will be skipped"
+    option "--cache, -c LIFE", "Set cache life [default: 1d]. LIFE can be in any of the following formats:\n  10  = 10 seconds\n  20s = 20 seconds\n  10m = 10 minutes\n  10h = 10 hours\n  10d = 10 days"
+    option "--cache-dir DIR", "Set the cache directory"
 
     example "sla example.com"
     example "sla example.com -c10m -d10"

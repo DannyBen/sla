@@ -11,18 +11,6 @@ class Page
     @uri, @parent, @depth = uri, parent, depth
   end
 
-  def anchors
-    @anchors ||= dom.css('a[href]')
-  end
-
-  def content
-    @content ||= response.content
-  end
-
-  def dom
-    @dom ||= Nokogiri::HTML content
-  end
-
   def error
     response.error
   end
@@ -36,6 +24,32 @@ class Page
     "#<Page url: #{url}, depth: #{depth}, parent: #{parent.url}>"
   end
 
+  def pages
+    @pages ||= pages!
+  end
+
+  def url
+    uri.to_s
+  end
+
+  def valid?
+    !response.error
+  end
+
+private
+
+  def anchors
+    @anchors ||= dom.css('a[href]')
+  end
+
+  def content
+    @content ||= response.content
+  end
+
+  def dom
+    @dom ||= Nokogiri::HTML content
+  end
+
   def normalize_url(new_url)
     new_url = URI.parse new_url
     new_url.fragment = false
@@ -43,10 +57,6 @@ class Page
     result = new_url.absolute? ? new_url : URI.join(url, new_url)
 
     result.scheme =~ /^http/ ? result.to_s : nil
-  end
-
-  def pages
-    @pages ||= pages!
   end
 
   def pages!
@@ -68,14 +78,6 @@ class Page
     response = WebCache.get url
     @uri = response.base_uri
     response
-  end
-
-  def url
-    uri.to_s
-  end
-
-  def valid?
-    !response.error
   end
 
 end

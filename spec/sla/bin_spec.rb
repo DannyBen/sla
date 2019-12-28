@@ -7,7 +7,7 @@ describe 'bin/sla' do
 
   context "on failures" do
     it "fails gracefully" do
-      expect(`bin/sla check localhost:3000`).to match_fixture('bin/fail')
+      expect(`bin/sla localhost:3000 --simple`).to match_fixture('bin/fail')
     end
   end
 end
