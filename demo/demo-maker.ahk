@@ -17,15 +17,17 @@ Type(Command, Delay=2000) {
 
 F12::
   Type("cd demo")
-  Type("export SLA_SLEEP=0.3")
+  Type("export SLA_SLEEP=0.2")
   Type("termtosvg cast.svg -t window_frame")
 
   Type("sla")
-  Type("sla check localhost:3000 --depth 2", 5000)
-  Type("sla check localhost:3000", 7000)
-  Type("sla check localhost:3000 --ignore /whiskey", 6000)
+  Type("sla localhost:3000 --depth 2", 6000)
+  Type("sla localhost:3000", 7000)
+  Type("sla localhost:3000 --ignore /whiskey", 6000)
+  Type("sla localhost:3000 --verbose", 8000)
 
   Type("exit")
+  Type("unset SLA_SLEEP")
 Return
 
 ^F12::
