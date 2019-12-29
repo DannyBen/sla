@@ -1,5 +1,5 @@
 
-SOURCE  http://localhost:3000
+SOURCE  http://localhost:3000/
   PASS  1  http://localhost:3000/whiskey/
   PASS  1  http://localhost:3000/ten/
   PASS  1  http://localhost:3000/roger/
