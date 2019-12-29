@@ -19,6 +19,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'colsole', '~> 0.7', '>= 0.7.1'
   s.add_dependency 'mister_bin', '~> 0.7'
-  s.add_dependency 'webcache', '~> 0.6'
+  s.add_dependency 'webcache', '~> 0.7'
   s.add_dependency 'nokogiri', '~> 1.10'
 end

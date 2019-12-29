@@ -2,11 +2,11 @@
 [0/2 @ 1] PASS http://localhost:3000/ten/ 
 [0/3 @ 1] PASS http://localhost:3000/roger/ 
 [0/4 @ 1] PASS http://localhost:3000/about/ 
-[0/5 @ 1] PASS https://example.com 
+[0/5 @ 1] PASS https://example.com/ 
 [0/6 @ 2] PASS http://localhost:3000/whiskey/tango/ 
 [0/7 @ 2] PASS http://localhost:3000/ten/four/ 
 [0/8 @ 2] PASS http://example.com/ 
-[0/9 @ 2] PASS http://example.com 
+[0/9 @ 2] PASS http://example.com/ 
 [0/10 @ 2] PASS http://localhost:3000/about/contact/ 
 
 Checked 10 pages with 0 failures

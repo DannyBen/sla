@@ -1,5 +1,5 @@
 
-SOURCE  http://localhost:3000
+SOURCE  http://localhost:3000/
   SKIP  1  http://localhost:3000/whiskey
   PASS  1  http://localhost:3000/ten/
   SKIP  1  http://localhost:3000/roger
