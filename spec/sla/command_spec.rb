@@ -62,6 +62,7 @@ describe Command do
 
       it "checks external pages as well" do
         expect { subject.run command }.to output_fixture('cli/check-external')
+          .except(/ERR  failed to connect(.*)/)
       end
     end
 
