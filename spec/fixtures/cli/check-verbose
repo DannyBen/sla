@@ -4,6 +4,11 @@ SOURCE  http://localhost:3000/
   PASS  1  http://localhost:3000/ten/
   PASS  1  http://localhost:3000/roger/
   PASS  1  http://localhost:3000/about/
+  PASS  1  https://example.com/
+  FAIL  1  https://invalid-host
+   ERR  failed to connect...
+  FAIL  1  https://httpbin.org/basic-auth/user/pass
+   401  401 Unauthorized
 
 SOURCE  http://localhost:3000/whiskey/
   SKIP  2  http://localhost:3000/about
@@ -27,6 +32,8 @@ SOURCE  http://localhost:3000/ten/four/
   SKIP  3  http://localhost:3000/about
 
 SOURCE  http://localhost:3000/roger/
+  PASS  2  http://example.com/
+  PASS  2  http://example.com/
   SKIP  2  http://localhost:3000/about
 
 SOURCE  http://localhost:3000/about/
@@ -34,4 +41,4 @@ SOURCE  http://localhost:3000/about/
 
 SOURCE  http://localhost:3000/about/contact/
 
-Checked 9 pages with 2 failures
+Checked 14 pages with 4 failures

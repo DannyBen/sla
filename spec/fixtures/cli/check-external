@@ -3,10 +3,17 @@
 [0/3 @ 1] PASS http://localhost:3000/roger/ 
 [0/4 @ 1] PASS http://localhost:3000/about/ 
 [0/5 @ 1] PASS https://example.com/ 
-[0/6 @ 2] PASS http://localhost:3000/whiskey/tango/ 
-[0/7 @ 2] PASS http://localhost:3000/ten/four/ 
-[0/8 @ 2] PASS http://example.com/ 
-[0/9 @ 2] PASS http://example.com/ 
-[0/10 @ 2] PASS http://localhost:3000/about/contact/ 
+SOURCE  http://localhost:3000/
+  FAIL  1  https://invalid-host
+   ERR  failed to connect: getaddrinfo: Temporary failure in name resolution
+[1/6 @ 1] FAIL https://invalid-host 
+  FAIL  1  https://httpbin.org/basic-auth/user/pass
+   401  401 Unauthorized
+[2/7 @ 1] FAIL https://httpbin.org/basic-auth/user/pass 
+[2/8 @ 2] PASS http://localhost:3000/whiskey/tango/ 
+[2/9 @ 2] PASS http://localhost:3000/ten/four/ 
+[2/10 @ 2] PASS http://example.com/ 
+[2/11 @ 2] PASS http://example.com/ 
+[2/12 @ 2] PASS http://localhost:3000/about/contact/ 
 
-Checked 10 pages with 0 failures
+Checked 12 pages with 2 failures

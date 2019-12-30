@@ -1,5 +1,10 @@
+SOURCE  http://localhost:3000/
+  FAIL  1  https://invalid-host
+   ERR  failed to connect...
+  FAIL  1  https://httpbin.org/basic-auth/user/pass
+   401  401 Unauthorized
 SOURCE  http://localhost:3000/whiskey/tango/
   FAIL  3  http://localhost:3000/whiskey/tango/foxtrot
   FAIL  3  http://localhost:3000/whiskey/tango/bang
 
-Checked 9 pages with 2 failures
+Checked 14 pages with 4 failures

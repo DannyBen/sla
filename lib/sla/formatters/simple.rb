@@ -19,6 +19,7 @@ module SLA
         end
 
         say "  !txtred!FAIL!txtrst!  #{page.depth}  #{page.url}"
+        say "   !txtred!#{page.code}!txtrst!  #{page.error}" unless page.code == 404
       end
 
     end

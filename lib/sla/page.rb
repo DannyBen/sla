@@ -15,6 +15,10 @@ class Page
     response.error
   end
 
+  def code
+    response.code || 'ERR'
+  end
+
   def external?
     byebug unless uri.respond_to? :host
     uri.host != parent.uri.host

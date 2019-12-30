@@ -32,18 +32,20 @@ describe Command do
     end
 
     describe '--verbose' do
-      let(:command) { %w[localhost:3000 --verbose] }
+      let(:command) { %w[localhost:3000 --verbose --external] }
 
       it "uses the Verbose formatter" do
         expect { subject.run command }.to output_fixture('cli/check-verbose')
+          .except(/ERR  failed to connect(.*)/)
       end
     end
 
     describe '--simple' do
-      let(:command) { %w[localhost:3000 --simple] }
+      let(:command) { %w[localhost:3000 --simple --external] }
 
       it "uses the Simple formatter" do
         expect { subject.run command }.to output_fixture('cli/check-simple')
+          .except(/ERR  failed to connect(.*)/)
       end
     end
 
