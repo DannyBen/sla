@@ -8,14 +8,6 @@ module SLA
       @check_external = check_external
     end
 
-    def deeply_checked
-      @deeply_checked ||= {}
-    end
-
-    def checked
-      @checked ||= {}
-    end
-
     def check(page, &block)
       return if ignore? page
       return if page.depth >= max_depth
@@ -53,6 +45,14 @@ module SLA
       end
 
       false
+    end
+
+    def deeply_checked
+      @deeply_checked ||= {}
+    end
+
+    def checked
+      @checked ||= {}
     end
 
   end
