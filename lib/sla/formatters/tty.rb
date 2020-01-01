@@ -25,6 +25,7 @@ module SLA
           end
 
           resay "  !txtred!FAIL!txtrst!  #{page.depth}  #{page.url}"
+          resay "   !txtred!#{page.code}!txtrst!  #{page.error}" unless page.code == 404
         end
 
         message = "[#{failed}/#{count} @ #{page.depth}] #{status}"
