@@ -20,7 +20,7 @@ class Page
   end
 
   def external?
-    uri.host != parent.uri.host
+    parent ? (uri.host != parent.uri.host) : false
   end
 
   def inspect
