@@ -20,7 +20,6 @@ class Page
   end
 
   def external?
-    byebug unless uri.respond_to? :host
     uri.host != parent.uri.host
   end
 
