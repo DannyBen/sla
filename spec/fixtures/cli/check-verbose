@@ -6,7 +6,7 @@ SOURCE  http://localhost:3000/
   PASS  1  http://localhost:3000/about/
   PASS  1  https://example.com/
   FAIL  1  https://invalid-host
-   ERR  failed to connect...
+   ERR  failed to connect
   FAIL  1  https://httpbin.org/basic-auth/user/pass
    401  401 Unauthorized
 

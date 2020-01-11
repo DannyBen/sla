@@ -36,7 +36,7 @@ describe Command do
 
       it "uses the Verbose formatter" do
         expect { subject.run command }.to output_fixture('cli/check-verbose')
-          .except(/ERR  failed to connect(.*)/)
+          .except(/ERR  failed to connect.*/, 'ERR  failed to connect')
       end
     end
 
@@ -45,7 +45,7 @@ describe Command do
 
       it "uses the Simple formatter" do
         expect { subject.run command }.to output_fixture('cli/check-simple')
-          .except(/ERR  failed to connect(.*)/)
+          .except(/ERR  failed to connect.*/, 'ERR  failed to connect')
       end
     end
 
@@ -62,7 +62,7 @@ describe Command do
 
       it "checks external pages as well" do
         expect { subject.run command }.to output_fixture('cli/check-external')
-          .except(/ERR  failed to connect(.*)/)
+          .except(/ERR  failed to connect.*/, 'ERR  failed to connect')
       end
     end
 
