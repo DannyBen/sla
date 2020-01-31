@@ -2,7 +2,7 @@ Site Link Analyzer
 ==================================================
 
 [![Gem Version](https://badge.fury.io/rb/sla.svg)](https://badge.fury.io/rb/sla)
-[![Build Status](https://travis-ci.com/DannyBen/sla.svg?branch=master)](https://travis-ci.com/DannyBen/sla)
+[![Build Status](https://github.com/DannyBen/sla/workflows/Test/badge.svg)](https://github.com/DannyBen/sla/actions?query=workflow%3ATest)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f78192aead8a74535a24/maintainability)](https://codeclimate.com/github/DannyBen/sla/maintainability)
 
 ---
