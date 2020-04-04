@@ -6,8 +6,7 @@ module SLA
       attr_accessor :count, :failed
 
       def initialize
-        @count = 0
-        @failed = 0
+        @count, @failed = 0, 0
       end
 
       def success?
