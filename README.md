@@ -1,5 +1,4 @@
-Site Link Analyzer
-==================================================
+# Site Link Analyzer
 
 [![Gem Version](https://badge.fury.io/rb/sla.svg)](https://badge.fury.io/rb/sla)
 [![Build Status](https://github.com/DannyBen/sla/workflows/Test/badge.svg)](https://github.com/DannyBen/sla/actions?query=workflow%3ATest)
@@ -11,25 +10,30 @@ SLA is a simple broken links checker, with built in caching.
 
 ![SLA Demo](demo/cast.svg "SLA Demo")
 
-Install
---------------------------------------------------
+## Install
 
-```
+### Install using Ruby
+
+```shell
 $ gem install sla
 ```
 
+### Install using Docker
 
-Features
---------------------------------------------------
+```shell
+alias sla='docker run --rm -it --network host -v /tmp/sla_cache:/app/cache dannyben/sla'
+```
+
+The `--network host` flag is only necessary if you intend to check links on `localhost`.
+
+## Features
 
 - Easy to use command line interface.
 - Built in caching, to avoid overtaxing the server.
 - Show and save list of broken links to a log file.
 - Exits with non zero code on failure, for CI integration.
 
-
-Usage
---------------------------------------------------
+## Usage
 
 ```
 $ sla --help
@@ -91,3 +95,12 @@ Examples:
   sla example.com --ignore "/admin /customer/login"
 
 ```
+
+## Contributing / Support
+
+If you experience any issue, have a question or a suggestion, or if you wish
+to contribute, feel free to [open an issue][issues].
+
+---
+
+[issues]: https://github.com/DannyBen/sla/issues

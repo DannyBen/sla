@@ -51,7 +51,7 @@ action :mock do |args|
     options = args['OPTIONS'].join ' '
     options = " #{options}"
   end
-  run! "bundle exec bin/sla check localhost:3000 -c1#{options}"
+  run! "bundle exec bin/sla localhost:3000 -c1#{options}"
 end
 
 usage  "hash URL"
