@@ -10,9 +10,14 @@ module SLA
         @count += 1
 
         return if page.valid?
-
         @failed += 1
 
+        show_status page
+      end
+
+    private
+
+      def show_status(page)
         if last_source
           say "!txtpur!SOURCE  #{last_source}"
           @last_source = nil
