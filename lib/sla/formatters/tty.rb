@@ -1,16 +1,25 @@
 module SLA
   module Formatters
     class TTY < Base
-      attr_reader :last_source
+      attr_reader :last_source, :screen_width
 
       def handle(action, page)
-        screen_width = terminal_width
-
+        @screen_width = terminal_width
         @last_source = page.url if action == :source
 
         return unless action == :check
         @count += 1
 
+        show_status page
+      end
+
+      def footer_prefix
+        terminal? ? "\033[2K\n" : "\n"
+      end
+
+    private
+
+      def show_status(page)
         if page.valid?
           status = "PASS"
           color = "!txtgrn!"
@@ -33,11 +42,6 @@ module SLA
         url = page.url[0..remaining_width]
         resay "[#{failed}/#{count} @ #{page.depth}] #{color}#{status}!txtrst! #{url} "
       end
-
-      def footer_prefix
-        terminal? ? "\033[2K\n" : "\n"
-      end
-
 
     end
   end

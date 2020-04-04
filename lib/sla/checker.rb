@@ -9,14 +9,11 @@ module SLA
     end
 
     def check(page, &block)
-      return if ignore? page
-      return if page.depth >= max_depth
-      return unless page.valid?
+      return if skip? page
 
       yield [:source, page] if block_given?
 
-      pages = page.pages
-      pages.reject! { |page| page.external? } if !check_external
+      pages = page_list page
 
       pages.each do |page|
         if checked.has_key? page.url or ignore? page
@@ -36,6 +33,18 @@ module SLA
     end
 
   private
+
+    def page_list(page)
+      if check_external
+        page.pages
+      else
+        page.pages.reject { |page| page.external? }
+      end
+    end
+
+    def skip?(page)
+      ignore?(page) or page.depth >= max_depth or !page.valid?
+    end
 
     def ignore?(page)
       return false unless ignore
