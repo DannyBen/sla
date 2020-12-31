@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'adsf'
+gem 'httpme'
 gem 'byebug'
 gem 'lp'
 gem 'rspec'

@@ -26,7 +26,7 @@ action :server, :s do |args|
   if args['stop']
     stop_bg :mock
   else
-    run_bg 'adsf -p3000 -rmock -a0.0.0.0', pid: :mock
+    run_bg 'httpme mock', pid: :mock
   end
 end
 
