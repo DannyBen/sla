@@ -10,7 +10,7 @@ module SLA
       end
 
       def success?
-        failed == 0
+        count > 0 and failed == 0
       end
 
       def handle(action, page)
