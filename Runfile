@@ -1,6 +1,9 @@
 require "runfile-tasks"
 require "fileutils"
 require "sla"
+require "colsole"
+
+include Colsole
 
 title   "SLA Developer Toolkit"
 summary "Runfile tasks for building the SLA gem"
@@ -12,22 +15,18 @@ RunfileTasks::Docs.rdoc
 
 help   "Run YARD server"
 action :yard do
-  run "yard server -p3000 -B0.0.0.0 -r"
+  system  "yard server -p3000 -B0.0.0.0 -r"
 end
 
 help   "Run IRB console"
 action :console, :c do
-  run "bundle exec bin/console"
+  system  "bundle exec bin/console"
 end
 
-usage  "(server|s) [stop]"
-help   "Start or stop the mock server"
-action :server, :s do |args|
-  if args['stop']
-    stop_bg :mock
-  else
-    run_bg 'httpme mock', pid: :mock
-  end
+usage  "mockserver"
+help   "Start the mock server"
+action :mockserver do |args|
+  system 'httpme mock'
 end
 
 help   "flush the spec cache"
@@ -41,7 +40,7 @@ end
 usage  "sla -- COMMANDS..."
 help   "run sla from source"
 action :sla do |args|
-  run! "bundle exec bin/sla #{args['COMMANDS'].join ' '}"
+  exec "bundle exec bin/sla #{args['COMMANDS'].join ' '}"
 end
 
 usage  "mock [-- OPTIONS...]"
@@ -51,7 +50,7 @@ action :mock do |args|
     options = args['OPTIONS'].join ' '
     options = " #{options}"
   end
-  run! "bundle exec bin/sla localhost:3000 -c1#{options}"
+  exec "bundle exec bin/sla localhost:3000 -c1#{options}"
 end
 
 usage  "hash URL"
@@ -63,7 +62,7 @@ end
 help   "run the dev/test.rb script"
 action :dev do
   Dir.chdir 'dev' do
-    run "bundle exec ruby test.rb"
+    system  "bundle exec ruby test.rb"
   end
 end
 
