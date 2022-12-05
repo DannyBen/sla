@@ -50,10 +50,10 @@ module SLA
         Formatters::TTY.new
       end
 
-      execute url, checker, formatter
+      run! url, checker, formatter
     end
 
-    def execute(url, checker, formatter)
+    def run!(url, checker, formatter)
       page = Page.new url
       checker.check page do |action, page|
         success = formatter.handle action, page

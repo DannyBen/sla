@@ -11,9 +11,8 @@ SOURCE  http://localhost:3000/
    401  401 Unauthorized
 [2/7 @ 1] FAIL https://httpbin.org/basic-auth/user/pass 
 [2/8 @ 2] PASS http://localhost:3000/whiskey/tango/ 
-[2/9 @ 2] PASS http://localhost:3000/ten/four/ 
+[2/9 @ 2] PASS http://localhost:3000/ten/four 
 [2/10 @ 2] PASS http://example.com/ 
 [2/11 @ 2] PASS http://example.com/ 
-[2/12 @ 2] PASS http://localhost:3000/about/contact/ 
 
-Checked 12 pages with 2 failures
+Checked 11 pages with 2 failures

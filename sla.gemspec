@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.executables = ["sla"]
   s.homepage    = 'https://github.com/DannyBen/sla'
   s.license     = 'MIT'
-  s.required_ruby_version = ">= 2.4.0"
+  s.required_ruby_version = ">= 2.7.0"
 
   s.add_dependency 'colsole', '~> 0.7', '>= 0.7.1'
   s.add_dependency 'mister_bin', '~> 0.7'

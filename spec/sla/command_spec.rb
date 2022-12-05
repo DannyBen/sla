@@ -8,13 +8,13 @@ describe Command do
 
   describe "without arguments" do
     it "shows usage patterns" do
-      expect { subject.run }.to output_fixture('cli/usage')
+      expect { subject.run }.to output_approval('cli/usage')
     end
   end
 
   describe "--help" do
     it "shows help" do
-      expect { subject.run ["--help"] }.to output_fixture('cli/help')
+      expect { subject.run ["--help"] }.to output_approval('cli/help')
     end
   end
 
@@ -28,14 +28,14 @@ describe Command do
     let(:command) { %w[localhost:3000] }
 
     it "outputs report" do
-      expect { subject.run command }.to output_fixture('cli/check')
+      expect { subject.run command }.to output_approval('cli/check')
     end
 
     describe '--verbose' do
       let(:command) { %w[localhost:3000 --verbose --external] }
 
       it "uses the Verbose formatter" do
-        expect { subject.run command }.to output_fixture('cli/check-verbose')
+        expect { subject.run command }.to output_approval('cli/check-verbose')
           .except(/ERR  failed to connect.*/, 'ERR  failed to connect')
       end
     end
@@ -44,7 +44,7 @@ describe Command do
       let(:command) { %w[localhost:3000 --simple --external] }
 
       it "uses the Simple formatter" do
-        expect { subject.run command }.to output_fixture('cli/check-simple')
+        expect { subject.run command }.to output_approval('cli/check-simple')
           .except(/ERR  failed to connect.*/, 'ERR  failed to connect')
       end
     end
@@ -53,7 +53,7 @@ describe Command do
       let(:command) { %w[localhost:3000 --depth 1] }
 
       it "changes the max scan depth" do
-        expect { subject.run command }.to output_fixture('cli/check-depth')
+        expect { subject.run command }.to output_approval('cli/check-depth')
       end
     end
 
@@ -61,7 +61,7 @@ describe Command do
       let(:command) { %w[localhost:3000 --external --depth 2] }
 
       it "checks external pages as well" do
-        expect { subject.run command }.to output_fixture('cli/check-external')
+        expect { subject.run command }.to output_approval('cli/check-external')
           .except(/ERR  failed to connect.*/, 'ERR  failed to connect')
       end
     end
@@ -70,7 +70,7 @@ describe Command do
       let(:command) { ["localhost:3000", "-v", "-d2", "--ignore", "whiskey roger" ] }
 
       it "omits urls containing any of the provided strings" do
-        expect { subject.run command }.to output_fixture('cli/check-ignore')
+        expect { subject.run command }.to output_approval('cli/check-ignore')
       end
     end
 
@@ -83,7 +83,7 @@ describe Command do
       it "raises BrokenLinks error" do
         expect {
           expect { subject.run command }.to raise_error(BrokenLinks)
-        }.to output_fixture("cli/check-broken")
+        }.to output_approval("cli/check-broken")
       end
     end
   end
