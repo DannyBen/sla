@@ -12,6 +12,7 @@ version SLA::VERSION
 RunfileTasks::RubyGems.all 'sla'
 RunfileTasks::Testing.rspec
 RunfileTasks::Docs.rdoc
+RunfileTasks::Docker.all 'dannyben/sla', SLA::VERSION
 
 help   "Run YARD server"
 action :yard do
