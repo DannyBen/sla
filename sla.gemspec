@@ -17,8 +17,8 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   s.required_ruby_version = ">= 2.7.0"
 
-  s.add_dependency 'colsole', '~> 0.7.2'
-  s.add_dependency 'mister_bin', '~> 0.7.3'
-  s.add_dependency 'webcache', '~> 0.8.0'
+  s.add_dependency 'colsole', '~> 0.7'
+  s.add_dependency 'mister_bin', '~> 0.7'
+  s.add_dependency 'webcache', '~> 0.8'
   s.add_dependency 'nokogiri', '~> 1.10'
 end
