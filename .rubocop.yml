@@ -1,5 +1,3 @@
-inherit_from: .rubocop_todo.yml
-
 require:
   - rubocop-performance
   - rubocop-rspec
@@ -15,3 +13,12 @@ AllCops:
     - debug.rb
     - dev/**/*
 
+Style/CombinableLoops:
+  Exclude:
+    - 'lib/sla/checker.rb'
+
+Metrics/CyclomaticComplexity:
+  Max: 11
+
+Metrics/PerceivedComplexity:
+  Max: 12

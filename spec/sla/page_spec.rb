@@ -16,7 +16,7 @@ describe Page do
     context 'with a URI object' do
       let(:url) { URI.parse 'http://example.com' }
 
-      it 'works' do
+      it 'returns the object itself' do
         expect(subject.uri).to eq url
       end
     end

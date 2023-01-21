@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'bin/sla' do
-  it 'works' do
+  it 'outputs usage' do
     expect(`bin/sla`).to match_approval('bin/usage')
   end
 
