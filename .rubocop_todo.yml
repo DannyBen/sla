@@ -1,0 +1,26 @@
+Metrics/CyclomaticComplexity:
+  Max: 11
+
+Metrics/PerceivedComplexity:
+  Max: 12
+
+RSpec/ExampleWording:
+  Exclude:
+    - 'spec/sla/bin_spec.rb'
+    - 'spec/sla/page_spec.rb'
+
+Style/CombinableLoops:
+  Exclude:
+    - 'lib/sla/checker.rb'
+
+Style/NumericPredicate:
+  Exclude:
+    - 'spec/**/*'
+    - 'lib/sla/formatters/base.rb'
+
+Style/RedundantArgument:
+  Exclude:
+    - 'lib/sla/command.rb'
+
+Layout/LineLength:
+  Max: 202

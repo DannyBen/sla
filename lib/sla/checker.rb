@@ -11,24 +11,26 @@ module SLA
     def check(page, &block)
       return if skip? page
 
-      yield [:source, page] if block_given?
+      yield [:source, page] if block
 
       pages = page_list page
 
-      pages.each do |page|
-        if checked.has_key? page.url or ignore? page
-          yield [:skip, page] if block_given?
+      pages.each do |next_page|
+        if checked.has_key?(next_page.url) || ignore?(next_page)
+          yield [:skip, next_page] if block
         else
-          checked[page.url] = true
-          yield [:check, page] if block_given?
+          checked[next_page.url] = true
+          yield [:check, next_page] if block
         end
       end
 
-      pages.each do |page|
-        next if deeply_checked.has_key? page.url
-        deeply_checked[page.url] = true
-        next if page.external?
-        check page, &block
+      pages.each do |next_page|
+        next if deeply_checked.has_key? next_page.url
+
+        deeply_checked[next_page.url] = true
+        next if next_page.external?
+
+        check next_page, &block
       end
     end
 
@@ -38,7 +40,7 @@ module SLA
       if check_external
         page.pages
       else
-        page.pages.reject { |page| page.external? }
+        page.pages.reject(&:external?)
       end
     end
 
@@ -63,7 +65,5 @@ module SLA
     def checked
       @checked ||= {}
     end
-
   end
 end
-

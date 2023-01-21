@@ -6,7 +6,8 @@ module SLA
       attr_accessor :count, :failed
 
       def initialize
-        @count, @failed = 0, 0
+        @count = 0
+        @failed = 0
       end
 
       def success?
@@ -24,10 +25,9 @@ module SLA
       end
 
       def footer
-        color = success? ? '!txtgrn!' : '!txtred!'
-        say "#{footer_prefix}#{color}Checked #{count} pages with #{failed} failures"
+        color = success? ? 'g' : 'r'
+        say "#{footer_prefix}#{color}`Checked #{count} pages with #{failed} failures`"
       end
-
     end
   end
 end

@@ -9,7 +9,9 @@ module SLA
         uri.fragment = false
       end
 
-      @uri, @parent, @depth = uri, parent, depth
+      @uri = uri
+      @parent = parent
+      @depth = depth
     end
 
     def error
@@ -60,7 +62,7 @@ module SLA
 
       result = new_url.absolute? ? new_url : URI.join(url, new_url)
 
-      result.scheme =~ /^http/ ? result.to_s : nil
+      /^http/.match?(result.scheme) ? result.to_s : nil
     end
 
     def pages!
@@ -68,7 +70,8 @@ module SLA
       anchors.each do |a|
         url = normalize_url a['href']
         next unless url
-        page = Page.new url, parent: self, depth: depth+1
+
+        page = Page.new url, parent: self, depth: depth + 1
         result[url] = page
       end
       result.values
@@ -83,6 +86,5 @@ module SLA
       @uri = response.base_uri
       response
     end
-
   end
 end

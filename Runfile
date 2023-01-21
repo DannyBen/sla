@@ -69,20 +69,20 @@ end
 
 help   "run specs with and without cache, and prepare cache for CI"
 action :fullspec do
-  say "!txtgrn!--> Flushing cache"
+  say "g`--> Flushing cache`"
   execute 'flush'
   
-  say "!txtgrn!--> Starting mock server"
+  say "g`--> Starting mock server`"
   execute 'server'
   
-  say "!txtgrn!--> Running tests and generating cache"
+  say "g`--> Running tests and generating cache`"
   execute 'spec'
 
-  say "!txtgrn!--> Stopping mock server"
+  say "g`--> Stopping mock server`"
   execute 'server stop'
 
-  say "!txtgrn!--> Running tests against cache"
+  say "g`--> Running tests against cache`"
   execute 'spec'
 
-  say "!txtgrn!--> Done"
+  say "g`--> Done`"
 end
