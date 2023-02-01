@@ -1,28 +1,12 @@
-require "runfile-tasks"
 require "fileutils"
 require "sla"
-require "colsole"
-
-include Colsole
 
 title   "SLA Developer Toolkit"
 summary "Runfile tasks for building the SLA gem"
 version SLA::VERSION
 
-RunfileTasks::RubyGems.all 'sla'
-RunfileTasks::Testing.rspec
-RunfileTasks::Docs.rdoc
-RunfileTasks::Docker.all 'dannyben/sla', SLA::VERSION
-
-help   "Run YARD server"
-action :yard do
-  system  "yard server -p3000 -B0.0.0.0 -r"
-end
-
-help   "Run IRB console"
-action :console, :c do
-  system  "bundle exec bin/console"
-end
+import_gem 'runfile-tasks/gem', gemname: 'sla'
+import_gem 'runfile-tasks/docker', image: 'dannyben/sla', version: SLA::VERSION
 
 usage  "mockserver"
 help   "Start the mock server"
@@ -65,24 +49,4 @@ action :dev do
   Dir.chdir 'dev' do
     system  "bundle exec ruby test.rb"
   end
-end
-
-help   "run specs with and without cache, and prepare cache for CI"
-action :fullspec do
-  say "g`--> Flushing cache`"
-  execute 'flush'
-  
-  say "g`--> Starting mock server`"
-  execute 'server'
-  
-  say "g`--> Running tests and generating cache`"
-  execute 'spec'
-
-  say "g`--> Stopping mock server`"
-  execute 'server stop'
-
-  say "g`--> Running tests against cache`"
-  execute 'spec'
-
-  say "g`--> Done`"
 end
