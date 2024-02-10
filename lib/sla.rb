@@ -16,10 +16,3 @@ require 'sla/formatters/simple'
 require 'sla/formatters/tty'
 
 require 'sla/command'
-
-if ENV['BYEBUG']
-  # :nocov:
-  require 'byebug'
-  require 'lp'
-  # :nocov:
-end
