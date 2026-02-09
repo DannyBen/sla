@@ -1,5 +1,7 @@
 # Site Link Analyzer
 
+![repocard](https://repocard.dannyben.com/svg/sla.svg)
+
 SLA is a simple broken links checker, with built in caching.
 
 ![SLA Demo](demo/cast.svg "SLA Demo")
